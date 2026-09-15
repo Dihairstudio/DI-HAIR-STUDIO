@@ -1,34 +1,34 @@
-/* --- UNIVERSAL RESET & VARIABEL --- */
+/* --- UNIVERSAL RESET & LUXURY PALETTE (Gaya Monokrom Hairnerds) --- */
 :root {
-    --primary-color: #0d0d0d;
-    --accent-color: #d4af37;
-    --text-color: #ffffff;
-    --bg-light: #161616;
-    --bg-card: #222222;
+    --primary-color: #000000;       /* Hitam Pekat */
+    --accent-color: #ffffff;        /* Putih Bersih Kontras */
+    --text-muted: #888888;         /* Abu-abu Netral */
+    --bg-light: #0a0a0a;            /* Hitam Meredup Halus */
+    --bg-card: #111111;             /* Kotak Latar Premium */
+    --border-color: #222222;        /* Garis Batas Super Tipis */
 }
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Inter', sans-serif; /* Font Utama Bersih & Rapi */
     scroll-behavior: smooth;
 }
 body {
     background-color: var(--primary-color);
-    color: var(--text-color);
+    color: #ffffff;
     line-height: 1.6;
+    letter-spacing: 0.3px;
 }
 
-/* --- HEADER & NAVIGATION (FIX TRANSPARAN PENUH) --- */
+/* --- HEADER & NAVIGATION --- */
 header {
-    /* Menggunakan background transparan penuh, tanpa gradasi pekat */
     background: transparent !important; 
     position: fixed;
     width: 100%;
     top: 0;
     left: 0;
     z-index: 1000;
-    /* Menghilangkan paksa semua jenis garis atau bayangan pembatas */
     border-bottom: none !important; 
     box-shadow: none !important; 
 }
@@ -37,19 +37,19 @@ header {
     flex-direction: column;
     justify-content: center;
     align-items: center;    
-    padding: 20px 5% 15px 5%;
-    gap: 15px;              
+    padding: 25px 5% 15px 5%;
+    position: relative;
 }
 .logo {
-    font-size: 26px;        
-    font-weight: bold;
-    letter-spacing: 2px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 28px;        
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
     text-align: center;
-    /* Bayangan teks agar nama brand tetap jelas terbaca di atas gambar */
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9); 
 }
 .logo span {
-    color: var(--accent-color);
+    color: var(--text-muted);
 }
 .nav-links {
     list-style: none;
@@ -57,73 +57,96 @@ header {
     justify-content: center; 
     align-items: center;
     flex-wrap: wrap;         
-    gap: 20px;               
+    gap: 25px;               
+    margin-top: 15px;
+    transition: all 0.3s ease;
 }
 .nav-links a {
-    color: var(--text-color);
+    color: #ffffff;
     text-decoration: none;
-    font-size: 13px;
+    font-size: 12px;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 500;
-    transition: 0.3s;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.9);
+    letter-spacing: 2px;
+    font-weight: 400;
+    transition: 0.3s ease;
 }
 .nav-links a:hover {
-    color: var(--accent-color);
+    color: var(--text-muted);
 }
 .btn-book-nav {
-    background-color: var(--accent-color);
-    color: #111 !important;
-    padding: 8px 18px;
-    border-radius: 4px;
-    font-weight: bold;
-    text-shadow: none !important;
+    background-color: #ffffff;
+    color: #000000 !important;
+    padding: 8px 20px;
+    border-radius: 0px; /* Sudut Kotak Tegas Sesuai Gaya Referensi */
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+.btn-book-nav:hover {
+    background-color: #cccccc !important;
+    color: #000000 !important;
+}
+.menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 25px;
+    z-index: 1001;
 }
 
-/* --- 2. HERO SECTION (MEMAKSA GAMBAR MENYATU KE ATAS LAYAR) --- */
+/* --- 2. HERO SECTION --- */
 .hero {
     height: 100vh; 
-    /* Menggunakan overlay gradasi gelap langsung di dalam background agar gambar menyatu mulus */
-    background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.7) 100%), url('assets/background\ dhs.webp') no-repeat center center/cover !important;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.85) 100%), url('assets/background dhs.webp') no-repeat center center/cover !important;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     padding: 0 20px;
-    /* Mengunci posisi agar mutlak menempel di ujung atas monitor */
-    margin-top: 0 !important; 
-    padding-top: 0 !important; 
-    position: relative;
-    top: 0;
 }
-/* --- EDIT TEKS HERO AGAR LEBIH KEREN & BESAR --- */
 .hero h1 {
-    font-size: 48px;                   /* Ukuran judul utama(DI HAIR STUDIO) */
+    font-family: 'Oswald', sans-serif;
+    font-size: 64px;                   
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 3px;
-    margin-bottom: 10px;
-    text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.8);
+    letter-spacing: 6px;
+    margin-bottom: 5px;
 }
-
 .hero p {
-    font-size: 26px;                   /* MEMPERBESAR tulisan "Gayamu Di Mulai Di Sini" */
-    font-weight: 700;                  /* Membuat teks menjadi tebal */
-    text-transform: uppercase;         /* Mengubah menjadi huruf kapital semua */
-    letter-spacing: 2px;               /* Memberi jarak antar huruf agar terkesan modern */
-    color: var(--accent-color);        /* Menggunakan warna emas khas DHS agar mencolok */
+    font-family: 'Oswald', sans-serif;
+    font-size: 22px;                   
+    font-weight: 400;                  
+    text-transform: uppercase;         
+    letter-spacing: 4px;               
+    color: #ffffff;        
     max-width: 800px;
-    margin: 0 auto 30px auto;
-    text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.9); /* Bayangan tajam agar mudah dibaca di atas gambar */
+    margin: 0 auto;
+}
+.btn-cta-hero {
+    display: inline-block;
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    padding: 14px 35px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+.btn-cta-hero:hover {
+    background: #ffffff;
+    color: #000000;
 }
 
-
-/* --- BACKGROUND MENYAMBUNG (Khusus No 3 sampai No 8) --- */
+/* --- MAIN CONTINUOUS BACKGROUND WRAPPER --- */
 .main-background-wrapper {
     position: relative;
-    background: url('assets/background dhs.webp') no-repeat center center;
-    background-size: cover;
-    background-attachment: fixed;
+    background: #000000;
     z-index: 1;
 }
 .main-background-wrapper .main-overlay-dark {
@@ -132,43 +155,36 @@ header {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)); 
+    background: #000000; 
     z-index: 1;
 }
 .main-background-wrapper section {
     position: relative;
     z-index: 2;
     background-color: transparent !important; 
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid var(--border-color);
 }
 
 /* --- SECTION GENERAL CONFIGURATION --- */
 section {
-    padding: 100px 5% 80px 5%;
+    padding: 120px 8% 100px 8%;
 }
 .section-title {
+    font-family: 'Oswald', sans-serif;
     text-align: center;
-    font-size: 32px;
+    font-size: 36px;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 40px;
-    position: relative;
-}
-.section-title::after {
-    content: '';
-    width: 60px;
-    height: 3px;
-    background-color: var(--accent-color);
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
+    letter-spacing: 3px;
+    margin-bottom: 50px;
 }
 .section-subtitle {
     text-align: center;
-    color: #aaa;
-    margin-top: -30px;
-    margin-bottom: 50px;
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-top: -35px;
+    margin-bottom: 60px;
+    font-weight: 300;
 }
 
 /* --- 3. TREATMENT EXPLANATIONS --- */
@@ -179,78 +195,116 @@ section {
 }
 .service-desc-card {
     background-color: var(--bg-card);
-    padding: 40px 30px;
-    border-radius: 8px;
-    border: 1px solid #2f2f2f;
-    transition: 0.3s;
+    padding: 50px 35px;
+    border: 1px solid var(--border-color);
+    transition: 0.3s ease;
 }
-.service-desc-card:hover { border-color: var(--accent-color); }
+.service-desc-card:hover { 
+    border-color: #444444; 
+}
 .service-icon {
-    font-size: 35px;
-    color: var(--accent-color);
-    margin-bottom: 20px;
+    font-size: 30px;
+    color: #ffffff;
+    margin-bottom: 25px;
 }
-.service-desc-card h3 { margin-bottom: 15px; font-size: 22px; }
-.service-desc-card p { color: #bbb; font-size: 14px; text-align: justify; }
+.service-desc-card h3 { 
+    font-family: 'Oswald', sans-serif;
+    margin-bottom: 15px; 
+    font-size: 20px; 
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.service-desc-card p { 
+    color: #aaaaaa; 
+    font-size: 13.5px; 
+    line-height: 1.6;
+    font-weight: 300;
+}
 
 /* --- 4. CATALOGUE LAYANAN BAR --- */
 .catalog-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 25px;
 }
 .catalog-item {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     background-color: var(--bg-card);
     padding: 20px;
-    border-radius: 8px;
-    border: 1px solid #2a2a2a;
+    border: 1px solid var(--border-color);
     transition: 0.3s;
 }
 .catalog-item:hover {
-    border-color: var(--accent-color);
-    transform: translateY(-2px);
+    border-color: #444444;
 }
 .catalog-item img {
-    width: 70px;
-    height: 70px;
+    width: 75px;
+    height: 75px;
     object-fit: cover;
-    border-radius: 6px;
-    margin-right: 18px;
-    border: 1px solid #3d3d3d;
+    border-radius: 0px;
+    margin-right: 20px;
+    border: 1px solid var(--border-color);
     flex-shrink: 0;
 }
-.catalog-info h4 { font-size: 16px; color: #fff; margin-bottom: 4px; font-weight: 600; }
-.catalog-info .Layanan-desc { font-size: 12px; color: #aaa; margin-bottom: 8px; line-height: 1.4; }
-.catalog-info .price { display: none; } /* Menyembunyikan harga */
+.catalog-info {
+    flex-grow: 1;
+}
+.catalog-info h4 { 
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px; 
+    color: #ffffff; 
+    margin-bottom: 5px; 
+    font-weight: 500; 
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+.catalog-info .Layanan-desc { 
+    font-size: 12px; 
+    color: #888888; 
+    margin-bottom: 8px; 
+    line-height: 1.4; 
+    font-weight: 300;
+}
+.catalog-info .price { 
+    display: block; 
+    font-size: 13.5px; 
+    color: #ffffff; 
+    font-weight: 600; 
+    letter-spacing: 0.5px;
+} 
 
 /* --- 5. RESULTS TREATMENT GALLERY --- */
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
+    gap: 15px;
 }
 .gallery-item {
     position: relative;
     overflow: hidden;
-    border-radius: 8px;
-    height: 280px;
-    border: 1px solid #2a2a2a;
+    height: 300px;
+    border: 1px solid var(--border-color);
 }
-.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s ease; }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
 .gallery-overlay {
     position: absolute;
     bottom: -100%;
     left: 0;
     width: 100%;
     background: linear-gradient(transparent, rgba(0,0,0,0.95));
-    padding: 20px;
+    padding: 25px 15px;
     text-align: center;
     transition: 0.4s ease;
 }
-.gallery-overlay h4 { color: var(--accent-color); font-size: 15px; text-transform: uppercase; }
-.gallery-item:hover img { transform: scale(1.08); }
+.gallery-overlay h4 { 
+    font-family: 'Oswald', sans-serif;
+    color: #ffffff; 
+    font-size: 14px; 
+    text-transform: uppercase; 
+    letter-spacing: 1px;
+}
+.gallery-item:hover img { transform: scale(1.05); }
 .gallery-item:hover .gallery-overlay { bottom: 0; }
 
 /* --- 6. PRODUCT SHOWCASE --- */
@@ -261,53 +315,154 @@ section {
 }
 .product-card {
     background-color: var(--bg-card);
-    border-radius: 8px;
-    overflow: hidden;
-    padding: 20px;
+    padding: 25px;
     text-align: center;
-    border: 1px solid #2a2a2a;
+    border: 1px solid var(--border-color);
 }
-.product-card img { width: 100%; height: 220px; object-fit: cover; border-radius: 6px; margin-bottom: 15px; }
-.product-card h3 { font-size: 18px; margin-bottom: 10px; }
-.product-card p { font-size: 13px; color: #aaa; margin-bottom: 15px; height: 60px; overflow: hidden; }
-.product-price { font-size: 16px; color: var(--accent-color); font-weight: bold; }
+.product-card img { width: 100%; height: 240px; object-fit: cover; margin-bottom: 20px; }
+.product-card h3 { font-family: 'Oswald', sans-serif; font-size: 18px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+.product-card p { font-size: 12.5px; color: #777777; margin-bottom: 15px; height: 55px; overflow: hidden; font-weight: 300; }
+.product-price { font-size: 15px; color: #ffffff; font-weight: 600; }
 
 /* --- 7. STYLIST & BRANCH CONFIGURATION (TABS) --- */
-.branch-tabs { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; flex-wrap: wrap; }
+.branch-tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 45px; flex-wrap: wrap; }
 .tab-btn {
-    background-color: #222; color: #fff; border: 1px solid #444; padding: 12px 24px;
-    cursor: pointer; font-size: 14px; border-radius: 4px; transition: 0.3s;
+    background-color: transparent; 
+    color: #666666; 
+    border: 1px solid #222; 
+    padding: 12px 24px;
+    font-family: 'Oswald', sans-serif;
+    cursor: pointer; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; transition: 0.3s;
 }
-.tab-btn:hover, .tab-btn.active { background-color: var(--accent-color); color: #111; font-weight: bold; border-color: var(--accent-color); }
+.tab-btn:hover, .tab-btn.active { background-color: #ffffff; color: #000000; font-weight: 500; border-color: #ffffff; }
 .branch-content { display: none; }
 .branch-content.active { display: block; }
-.stylist-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; }
-.stylist-card { background-color: var(--bg-card); border-radius: 6px; overflow: hidden; text-align: center; padding-bottom: 20px; border: 1px solid #2a2a2a; }
-.stylist-card img { width: 100%; height: 260px; object-fit: cover; margin-bottom: 15px; }
-.stylist-card h4 { font-size: 18px; margin-bottom: 5px; }
-.stylist-card .role { color: var(--accent-color); font-size: 13px; text-transform: uppercase; }
+.stylist-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; }
+.stylist-card { background-color: var(--bg-card); text-align: center; padding-bottom: 20px; border: 1px solid var(--border-color); }
+.stylist-card img { width: 100%; height: 280px; object-fit: cover; margin-bottom: 15px; }
+.stylist-card h4 { font-family: 'Oswald', sans-serif; font-size: 16px; margin-bottom: 4px; letter-spacing: 1px; }
+.stylist-card .role { color: var(--text-muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 300; }
 
 /* --- 8. ACADEMY REGION --- */
-.academy-container { display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
+.academy-container { display: flex; gap: 50px; align-items: center; flex-wrap: wrap; }
 .academy-info { flex: 1; min-width: 300px; }
-.academy-info h3 { font-size: 26px; color: var(--accent-color); margin-bottom: 20px; }
-.academy-info p { color: #ccc; text-align: justify; margin-bottom: 15px; }
-.academy-gallery { flex: 1; min-width: 300px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
-.academy-img-card { position: relative; border-radius: 6px; overflow: hidden; height: 220px; }
+.academy-info h3 { font-family: 'Oswald', sans-serif; font-size: 24px; color: #ffffff; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+.academy-info p { color: #888888; font-size: 14px; text-align: justify; margin-bottom: 15px; font-weight: 300; }
+.academy-gallery { flex: 1; min-width: 300px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.academy-img-card { position: relative; overflow: hidden; height: 240px; border: 1px solid var(--border-color); }
 .academy-img-card img { width: 100%; height: 100%; object-fit: cover; }
-.academy-tag { position: absolute; bottom: 0; width: 100%; background-color: rgba(212, 175, 55, 0.9); color: #111; text-align: center; font-size: 11px; font-weight: bold; padding: 5px 0; }
+.academy-tag { position: absolute; bottom: 0; width: 100%; background-color: rgba(0,0,0,0.85); color: #ffffff; text-align: center; font-size: 10px; letter-spacing: 0.5px; padding: 6px 0; font-weight: 400; }
 
 /* --- 9. VOUCHER SECTIONS --- */
-.promo-section { background-color: var(--bg-light); }
+.promo-section { background-color: #050505; }
 .promo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-.promo-card { background: linear-gradient(135deg, #2b230d, #1c1c1c); border: 2px dashed var(--accent-color); border-radius: 10px; padding: 30px; position: relative; overflow: hidden; }
-.promo-badge { position: absolute; top: 15px; right: -30px; background-color: red; color: white; font-size: 10px; font-weight: bold; padding: 5px 30px; transform: rotate(45deg); }
-.promo-card h3 { font-size: 22px; margin-bottom: 10px; color: var(--accent-color); }
-.promo-card p { font-size: 14px; color: #ddd; margin-bottom: 20px; }
-.coupon-code { background-color: #000; padding: 10px; text-align: center; border-radius: 4px; font-weight: bold; font-size: 15px; letter-spacing: 1px; }
-.coupon-code span { color: var(--accent-color); }
+.promo-card { background: var(--bg-card); border: 1px solid var(--border-color); padding: 40px 30px; position: relative; overflow: hidden; }
+.promo-badge { position: absolute; top: 15px; right: -30px; background-color: #ffffff; color: #000000; font-family: 'Oswald', sans-serif; font-size: 9px; font-weight: 600; padding: 5px 30px; transform: rotate(45deg); letter-spacing: 1px; }
+.promo-card h3 { font-family: 'Oswald', sans-serif; font-size: 20px; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+.promo-card p { font-size: 13px; color: #888888; margin-bottom: 25px; font-weight: 300; }
+.coupon-code { background-color: #000000; padding: 12px; text-align: center; border: 1px solid var(--border-color); font-size: 14px; letter-spacing: 1px; font-weight: 400; color: var(--text-muted); }
+.coupon-code span { color: #ffffff; font-weight: 600; }
 
 /* --- 10. COLLABORATION (B2B) --- */
 .b2b-section { background-color: var(--primary-color); text-align: center; }
-.b2b-card { background-color: var(--bg-card); max-width: 750px; margin: 0 auto; padding: 50px 30px; border-radius: 8px; border: 1px solid #333; }
-.b2b-icon { font-size: 50px; color: var(--accent-color); margin-bottom: 20px; }.b2b-card h3 { font-size: 24px; margin-bottom: 15px; }.b2b-card p { color: #bbb; font-size: 15px; max-width: 600px; margin: 0 auto 15px auto; }.b2b-contact { font-weight: bold; margin-top: 20px !important; color: #fff !important; }.btn-b2b { display: inline-block; background-color: #25d366; color: #fff; text-decoration: none; padding: 14px 30px; border-radius: 4px; font-weight: bold; margin-top: 15px; transition: 0.3s; }.btn-b2b:hover { background-color: #20ba5a; transform: scale(1.02); }/* --- FOOTER --- */footer { background-color: #050505; text-align: center; padding: 30px; font-size: 13px; color: #555; border-top: 1px solid #1a1a1a; }/* --- RESPONSIVE MEDIA (MOBILE OPTIMIZATION) --- */@media (max-width: 992px) {.navbar { padding: 15px 2%; }.nav-links { gap: 10px; }.nav-links a { font-size: 11px; }.hero h1 { font-size: 38px; }.main-background-wrapper { background-attachment: scroll; }.academy-gallery { grid-template-columns: 1fr; }.academy-img-card { height: 180px; }}
+.b2b-card { background-color: var(--bg-card); max-width: 750px; margin: 0 auto; padding: 60px 40px; border: 1px solid var(--border-color); }
+.b2b-icon { font-size: 40px; color: #ffffff; margin-bottom: 25px; }
+.b2b-card h3 { font-family: 'Oswald', sans-serif; font-size: 24px; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
+.b2b-card p { color: #888888; font-size: 14px; max-width: 600px; margin: 0 auto 15px auto; font-weight: 300; }
+.b2b-contact { font-weight: 400; margin-top: 25px !important; color: #ffffff !important; font-size: 13px; letter-spacing: 0.5px; }
+.btn-b2b { display: inline-block; background-color: transparent; color: #ffffff; border: 1px solid #ffffff; text-decoration: none; padding: 14px 35px; font-family: 'Oswald', sans-serif; font-size: 13px; letter-spacing: 1.5px; font-weight: 500; margin-top: 15px; transition: 0.3s; }
+.btn-b2b:hover { background-color: #ffffff; color: #000000; }
+
+/* --- 11. FOOTER --- */
+footer { background-color: #000000; text-align: center; padding: 40px; font-size: 12px; color: #444444; border-top: 1px solid var(--border-color); letter-spacing: 0.5px; }
+
+/* ==========================================================================
+   OPTIMASI RESPONSIVE MOBILE VERSI PREMIUM (MAKSIMAL 768PX)
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+    
+    section { padding: 70px 20px 50px 20px !important; }
+    .section-title { font-size: 28px; margin-bottom: 30px; letter-spacing: 2px; }
+    .section-subtitle { margin-top: -20px; margin-bottom: 40px; font-size: 13px; }
+
+    /* SYSTEM RESPONSIF NAVBAR HP */
+    header {
+        position: fixed;
+        background: rgba(0, 0, 0, 0.96) !important;
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border-color) !important;
+    }
+    .navbar {
+        padding: 15px 20px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        gap: 0;
+    }
+    .logo { font-size: 22px; text-align: left; letter-spacing: 2px; }
+    .menu-toggle { display: block; }
+    
+    .nav-links {
+        display: none; 
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.98);
+        padding: 25px 20px;
+        gap: 20px !important;
+        margin-top: 0;
+        border-top: 1px solid var(--border-color);
+    }
+    .nav-links.show { display: flex; }
+    .nav-links li { width: 100%; text-align: center; }
+    .nav-links a { display: block; padding: 8px 0; font-size: 13px; letter-spacing: 2.5px; border-bottom: 1px solid #111; }
+    .btn-book-nav { width: 100%; padding: 12px !important; }
+
+    /* HERO LAYOUT MOBILE */
+    .hero { height: 100vh; padding-top: 100px !important; }
+    .hero h1 { font-size: 42px; letter-spacing: 3px; }
+    .hero p { font-size: 16px !important; letter-spacing: 2px; margin-bottom: 25px; }
+
+    /* TREATMENT SECTIONS MOBILE */
+    .services-desc-grid { grid-template-columns: 1fr; gap: 20px; }
+    .service-desc-card { padding: 35px 25px; }
+
+    /* CATALOGUE CARDS LAYOUT */
+    .catalog-grid { grid-template-columns: 1fr; gap: 15px; }
+    .catalog-item { padding: 15px; }
+    .catalog-item img { width: 65px; height: 65px; margin-right: 15px; }
+    .catalog-info h4 { font-size: 15px; }
+    .catalog-info .Layanan-desc { font-size: 11.5px; }
+    .catalog-info .price { font-size: 13px; margin-top: 4px; }
+
+    /* RESULTS GALLERY (2 Kolom Presisi Hemat Ruang HP) */
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .gallery-item { height: 190px; }
+    .gallery-overlay { bottom: 0; padding: 12px 8px; background: linear-gradient(transparent, rgba(0,0,0,0.95)); }
+    .gallery-overlay h4 { font-size: 11px; letter-spacing: 0.5px; }
+
+    /* PRODUCT SHOWCASE */
+    .products-grid { grid-template-columns: 1fr; gap: 25px; }
+    .product-card p { height: auto; }
+
+    /* TAB FILTER KREW */
+    .branch-tabs { gap: 6px; }
+    .tab-btn { padding: 10px 8px; font-size: 10.5px; flex: 1; letter-spacing: 0.5px; }
+    .stylist-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .stylist-card img { height: 200px; }
+    .stylist-card h4 { font-size: 14px; }
+
+    /* ACADEMY CAROUSEL EFFECT */
+    .academy-container { flex-direction: column; gap: 25px; }
+    .academy-gallery { grid-template-columns: repeat(3, 1fr); gap: 8px; width: 100%; }
+    .academy-img-card { height: 110px; }
+    .academy-tag { font-size: 8.5px; padding: 4px 0; }
+
+    /* PROMO & MARKETING */
+    .promo-grid { grid-template-columns: 1fr; gap: 20px; }
+    .b2b-card { padding: 40px 20px; }
+    .btn-b2b { width: 100%; box-sizing: border-box; }
+}
