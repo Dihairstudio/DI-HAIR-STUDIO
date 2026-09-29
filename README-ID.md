@@ -30,7 +30,7 @@ Data Signature Services dan katalog ada di `js/data.js`.
 Harga pada katalog mengikuti data PDF yang tersedia. Untuk layanan yang sebelumnya Anda berikan dengan harga berbeda dari PDF, data katalog PDF diprioritaskan pada daftar katalog; Signature Services mempertahankan data brief Anda, kecuali Hair Spa Mask yang disesuaikan ke harga PDF Rp75.000.
 
 ## Booking
-Link Zenwel tersimpan di `js/data.js` sebagai `ZENWEL_URL`.
+Link booking online StudioKu tersimpan di `js/data.js` sebagai `ZENWEL_URL`.
 Jika link berubah, cukup ubah satu baris itu.
 
 ## WhatsApp

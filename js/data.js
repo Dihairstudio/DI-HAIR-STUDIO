@@ -539,7 +539,7 @@ const DIHAIR = {
       "subtitle": "Grooming & self-care in one synchronized session",
       "description": "Maksimalkan waktu kunjungan Anda. Lakukan perawatan kuku tangan atau kaki bersamaan saat proses treatment atau pewarnaan rambut berlangsung bersama spesialis kami.",
       "period": "Senin – Jumat · Pukul 10.00 – 17.00 WIB",
-      "ctaText": "BOOK COMBO VIA ZENWEL",
+      "ctaText": "BOOK COMBO VIA DI HAIR STUDIO",
       "ctaLink": "https://studioku.dihairstudio.id/#booking/customer",
       "image": "https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=1200&q=85",
       "highlights": [

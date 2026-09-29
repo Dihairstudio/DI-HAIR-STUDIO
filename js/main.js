@@ -190,7 +190,7 @@ function header() {
         <a href="${page('pages/franchise.html')}"><span class="nav-idx">11</span> FRANCHISE</a>
       </nav>
       <div class="mobile-menu-footer">
-        <a class="mobile-book" href="${ZENWEL_URL}" target="_blank" rel="noopener">BOOK ONLINE (ZENWEL) ↗</a>
+        <a class="mobile-book" href="${ZENWEL_URL}" target="_blank" rel="noopener">BOOK DI HAIR STUDIO ↗</a>
         <div class="mobile-quick-wa">
           <a href="https://wa.me/6287797894767" target="_blank" rel="noopener">WA REV</a>
           <span>·</span>
