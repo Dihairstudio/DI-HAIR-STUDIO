@@ -1,4 +1,4 @@
-const ZENWEL_URL = 'https://widget.zenwel.com/78903111/dihair-studio?lang=id&lid=17893';
+const ZENWEL_URL = 'https://studioku.dihairstudio.id/#booking/customer';
 const DIHAIR = {
   "brand": "DI HAIR STUDIO & NAIL",
   "tagline": "Your style. Your signature.",
@@ -17,7 +17,7 @@ const DIHAIR = {
       "hours": "10.00–22.00",
       "wa": "087797894767",
       "waLink": "https://wa.me/6287797894767",
-      "bookingUrl": "https://widget.zenwel.com/78903111/dihair-studio?lang=id&lid=17893",
+      "bookingUrl": "https://studioku.dihairstudio.id/#booking/customer",
       "image": "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=1200&q=85",
       "team": [
         "RIAN — Stylist + Barberman",
@@ -36,7 +36,7 @@ const DIHAIR = {
       "hours": "10.00–22.00",
       "wa": "085773230091",
       "waLink": "https://wa.me/6285773230091",
-      "bookingUrl": "https://widget.zenwel.com/78903111/dihair-studio?lang=id&lid=17893",
+      "bookingUrl": "https://studioku.dihairstudio.id/#booking/customer",
       "image": "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1200&q=85",
       "team": [
         "BOY — Barberman",
@@ -523,7 +523,7 @@ const DIHAIR = {
       "description": "Rasakan pengalaman personal styling di cabang REV atau JOCA. Setiap reservasi treatment Signature mendapatkan konsultasi skin-tone personal dan complimentary cold towel scalp refresh.",
       "period": "Berlaku Setiap Hari · Kuota Terbatas per Jam Reservasi",
       "ctaText": "RESERVE NOW",
-      "ctaLink": "https://widget.zenwel.com/78903111/dihair-studio?lang=id&lid=17893",
+      "ctaLink": "https://studioku.dihairstudio.id/#booking/customer",
       "image": "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1200&q=85",
       "highlights": [
         "Konsultasi gaya rambut personal 1-on-1",
@@ -540,7 +540,7 @@ const DIHAIR = {
       "description": "Maksimalkan waktu kunjungan Anda. Lakukan perawatan kuku tangan atau kaki bersamaan saat proses treatment atau pewarnaan rambut berlangsung bersama spesialis kami.",
       "period": "Senin – Jumat · Pukul 10.00 – 17.00 WIB",
       "ctaText": "BOOK COMBO VIA ZENWEL",
-      "ctaLink": "https://widget.zenwel.com/78903111/dihair-studio?lang=id&lid=17893",
+      "ctaLink": "https://studioku.dihairstudio.id/#booking/customer",
       "image": "https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=1200&q=85",
       "highlights": [
         "Pengerjaan paralel hemat waktu 40%",
