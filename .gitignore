@@ -1,8 +1,10 @@
-/@Hair12345 PW REV
-/DHS REVOLUSI
-/DI HAIR STUDIO RUST
-/DI HAIR STUDIO WEB
-/FINAL
-/GALERY DHS/JOCA
-/Tamlate blast 1.jpg
-/~$JADWAL DI HAIR.xlsx
+# Output QA dev-only: thumbnail img-check + laporan responsive-check.
+# Bukan bagian deploy dan tidak perlu ikut repository.
+tools/_review/
+
+# Skrip sekali-pakai yang sudah diarsipkan (fixes yang sudah masuk ke kode).
+tools/_archive/
+
+# OS / editor
+Thumbs.db
+.DS_Store

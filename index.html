@@ -1,478 +1,109 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DIHAIR STUDIO | Hair Studio & Academy</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts: Oswald untuk Judul Tegas & Inter untuk Teks Deskripsi -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome untuk Icon Medsoc & Fitur -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="DI HAIR STUDIO & NAIL — A modern studio for personal style, beauty and self-expression.">
+  <title>DI HAIR STUDIO & NAIL — Your style. Your signature.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- 1. HEADER & NAVIGASI -->
-    <header>
-        <nav class="navbar">
-            <div class="logo">DIHAIR <span>STUDIO</span></div>
-            <!-- Tombol Hamburger khusus Mobile -->
-            <button class="menu-toggle" aria-label="Buka Menu">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-            <ul class="nav-links">
-                <li><a href="#home">Beranda</a></li>
-                <li><a href="#services">Penjelasan Treatment</a></li>
-                <li><a href="#catalog">Katalog Layanan</a></li>
-                <li><a href="#gallery">Hasil Treatment</a></li>
-                <li><a href="#products">Produk</a></li>
-                <li><a href="#stylists">Krew</a></li>
-                <li><a href="#academy">Academy</a></li>
-                <li><a href="#promo">Voucher</a></li>
-                <li><a href="#b2b">Kerjasama</a></li>
-                <li><a href="https://zenwel.com" target="_blank" class="btn-book-nav">Pesan Sekarang</a></li>
-            </ul>
-        </nav>
-    </header>
+  <div id="site-header"></div>
 
-    <!-- 2. HERO SECTION -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>DIHAIR STUDIO</h1>
-            <p>Gayamu Di Mulai Disini</p>
-            <div style="margin-top: 20px;">
-                <p style="font-size: 16px; font-weight: 300; color: #ccc; text-transform: none; margin-bottom: 30px; font-family: 'Inter', sans-serif;">Eksplorasi gaya rambutmu di Hair Studio kami di 3 cabang strategis.</p>
-                <a href="https://zenwel.com" target="_blank" class="btn-cta-hero">BOOKING DI SINI</a>
-            </div>
-        </div>
+  <main>
+    <section class="hero" id="home">
+      <!-- Slides are rendered by js/main.js from DIHAIR.heroSlides (js/data.js), each with its own
+           crop + focal point (wide on desktop, tall on mobile) so the subject is never cut off.
+           The markup below is the no-JS fallback: slide 1 carries the exact URL the script asks
+           for, so the browser starts fetching it while the HTML is still parsing and the script
+           reuses that same request instead of downloading a second copy. Slides 2-4 have no
+           background on purpose - they hold the copy for visitors without JavaScript (revealed by
+           the no-script rule at the end of this section) and cost zero image requests. -->
+
+      <div class="hero-slides" id="heroSlides">
+        <article class="hero-slide is-active" style="--bg:url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=2000&q=78&h=1000&crop=entropy');--pos-d:55% 55%;--pos-m:50% 45%">
+          <div class="hero-overlay"></div><div class="hero-copy">
+            <p class="eyebrow">HAIR • BEAUTY • NAIL</p><h1>DI HAIR<br><em>STUDIO & NAIL</em></h1><p>Your style.<br>Your signature.</p><a class="button button-light" href="https://widget.zenwel.com/78903111/dihair-studio?lang=id&lid=17893" target="_blank" rel="noopener">BOOK NOW</a>
+          </div>
+        </article>
+        <article class="hero-slide" style="--pos-d:50% 55%;--pos-m:50% 45%">
+          <div class="hero-overlay"></div><div class="hero-copy"><p class="eyebrow">SIGNATURE COLOR</p><h2>COLOR<br><em>YOUR WAY</em></h2><p>Warna yang dirancang untuk personal style kamu.</p><a class="button button-light" href="pages/services.html">EXPLORE COLOR</a></div>
+        </article>
+        <article class="hero-slide" style="--pos-d:50% 45%;--pos-m:50% 30%">
+          <div class="hero-overlay"></div><div class="hero-copy"><p class="eyebrow">HAIR TREATMENT</p><h2>CARE<br><em>YOUR HAIR</em></h2><p>Perawatan untuk rambut yang terasa lebih terawat.</p><a class="button button-light" href="pages/packages.html">VIEW TREATMENTS</a></div>
+        </article>
+        <article class="hero-slide" style="--pos-d:45% 45%;--pos-m:40% 45%">
+          <div class="hero-overlay"></div><div class="hero-copy"><p class="eyebrow">NAIL CARE</p><h2>THE<br><em>FINISHING TOUCH</em></h2><p>Manicure dan pedicure sebagai pelengkap experience.</p><a class="button button-light" href="pages/services.html">DISCOVER NAIL CARE</a></div>
+        </article>
+      </div>
+      <button class="hero-arrow hero-prev" aria-label="Slide sebelumnya">←</button><button class="hero-arrow hero-next" aria-label="Slide berikutnya">→</button>
+      <noscript><style>.hero-slide{position:relative;opacity:1;min-height:56vh}.hero-arrow,.hero-counter,.hero-progress{display:none}</style></noscript>
+
+      <div class="hero-counter"><span id="heroCurrent">01</span> / 04</div>
+      <div class="hero-progress"><span id="heroProgress"></span></div>
     </section>
 
-    <!-- ======================================================== -->
-    <!-- AWAL BACKGROUND MENYAMBUNG (MEMBUNGKUS NOMOR 3 SAMPAI 8) -->
-    <!-- ======================================================== -->
-    <div class="main-background-wrapper">
-        <div class="main-overlay-dark"></div>
-
-        <!-- 3. PENJELASAN TREATMENT -->
-        <section id="services" class="services-section">
-            <h2 class="section-title">Penjelasan Treatment Kami</h2>
-            <div class="services-desc-grid">
-                <div class="service-desc-card">
-                    <i class="fa-solid fa-scissors service-icon"></i>
-                    <h3>Premium Haircut</h3>
-                    <p>Potongan rambut eksklusif yang dirancang khusus menyesuaikan bentuk anatomi wajah, struktur tulang, dan karakter kepribadian Anda. Proses ini sudah termasuk konsultasi mendalam, mencuci rambut dengan produk premium, serta diakhiri dengan pijat rileksasi pundak dan kepala.</p>
-                </div>
-                <div class="service-desc-card">
-                    <i class="fa-solid fa-wand-magic-sparkles service-icon"></i>
-                    <h3>Hair Coloring & Balayage</h3>
-                    <p>Ubah penampilan Anda dengan teknik pewarnaan rambut kelas dunia. Mulai dari pilihan warna bold fashion, natural tone, hingga teknik degradasi halus seperti Balayage dan Ombre. Kami mengutamakan produk pelindung rambut (plex) demi menjaga kilau dan meminimalkan kerusakan batang rambut.</p>
-                </div>
-                <div class="service-desc-card">
-                    <i class="fa-solid fa-droplet service-icon"></i>
-                    <h3>Scalp & Hair Treatment</h3>
-                    <p>Solusi komprehensif bagi Anda yang mengalami masalah rambut rontok, ketombe kronis, lepek, atau kulit kepala sensitif. Menggunakan teknologi detoksifikasi pori-pori kulit kepala dikombinasikan dengan serum nutrisi konsentrat tinggi untuk merangsang pertumbuhan akar rambut baru.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. KATALOG LAYANAN (18 LAYANAN LENGKAP UTUH) -->
-        <section id="catalog" class="catalog-section">
-            <h2 class="section-title">Katalog & Detail Layanan</h2>
-            <p class="section-subtitle">Daftar layanan pangkas, perawatan intensif, dan pewarnaan rambut premium kami.</p>
-            <div class="catalog-grid">
-                <!-- Item 1 -->
-                <div class="catalog-item">
-                    <img src="assets/Lg hair cut pria.jpg" alt="Premium Haircut">
-                    <div class="catalog-info">
-                        <h4>PRIA Premium Haircut + Wash</h4>
-                        <p class="Layanan-desc">Cukur potong kustom + cuci rambut shampoo premium + hair tonic + massage pijat pundak & kepala + styling pomade/wax.</p>
-                        <p class="price">Rp 60.000</p>
-                    </div>
-                </div>
-                <!-- Item 2 -->
-                <div class="catalog-item">
-                    <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=200&auto=format&fit=crop" alt="Basic Haircut">
-                    <div class="catalog-info">
-                        <h4>WANITA Haircut</h4>
-                        <p class="Layanan-desc">Potong rambut kilat tanpa cuci untuk Anda yang memiliki mobilitas tinggi, diakhiri dengan pembersihan sisa rambut secara higienis.</p>
-                        <p class="price">Rp 90.000</p>
-                    </div>
-                </div>
-                <!-- Item 3 -->
-                <div class="catalog-item">
-                    <img src="https://images.unsplash.com/photo-1621833601140-44bf350731f5?q=80&w=200&auto=format&fit=crop" alt="Beard Trim">
-                    <div class="catalog-info">
-                        <h4>Beard Trim & Shaving</h4>
-                        <p class="Layanan-desc">Perapian kumis dan jenggot menggunakan razor tajam sekali pakai, disusul pemberian pre-shave oil dan hot towel treatment.</p>
-                        <p class="price">Rp 60.000</p>
-                    </div>
-                </div>
-                <!-- Item 4 -->
-                <div class="catalog-item">
-                    <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=200&auto=format&fit=crop" alt="Hair Spa">
-                    <div class="catalog-info">
-                        <h4>Creambath Luxury Spa</h4>
-                        <p class="Layanan-desc">Pemberian krim ekstrak natural pilihan + steam rambut + pijat urut sirkulasi darah pada kepala, leher, hingga lengan.</p>
-                        <p class="price">Rp 120.000</p>
-                    </div>
-                </div>
-                <!-- Item 5 -->
-                <div class="catalog-item">
-                    <img src="https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?q=80&w=200&auto=format&fit=crop" alt="Anti Hairfall">
-                    <div class="catalog-info">
-                        <h4>Anti-Hairfall Therapy</h4>
-                        <p class="Layanan-desc">Terapi khusus rambut rontok menggunakan serum intensif, high-frequency ozone infra merah, untuk menguatkan folikel akar.</p>
-                        <p class="price">Rp 200.000</p>
-                    </div>
-                </div>
-                <!-- Item 6 -->
-                <div class="catalog-item">
-                    <img src="https://images.unsplash.com/photo-1605497746444-177369a42e5d?q=80&w=200&auto=format&fit=crop" alt="Hair Coloring">
-                    <div class="catalog-info">
-                        <h4>Fashion Color (Full)</h4>
-                        <p class="Layanan-desc">Pewarnaan rambut penuh satu kepala pilihan warna mode trendi menggunakan produk berkualitas tinggi yang ramah kulit.</p>
-                        <p class="price">Rp 450.000</p>
-                    </div>
-                </div>
-                <!-- Item 7 -->
-                <div class="catalog-item">
-                    <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=200&auto=format&fit=crop" alt="Balayage">
-                    <div class="catalog-info">
-                        <h4>Signature Balayage</h4>
-                        <p class="Layanan-desc">Teknik pewarnaan lukis tangan menghasilkan gradasi dimensi berkilau alami saat terpapar cahaya matahari.</p>
-                        <p class="price">Rp 650.000</p>
-                    </div>
-                </div>
-                <!-- Item 8 -->
-                <div class="catalog-item">
-                    <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?q=80&w=200&auto=format&fit=crop" alt="Hair Bleaching">
-                    <div class="catalog-info">
-                        <h4>Premium Bleaching / Level</h4>
-                        <p class="Layanan-desc">Proses penaikan level warna rambut dasar secara aman dengan tambahan formula plex pelindung protein rambut.</p>
-                        <p class="price">Rp 180.000</p>
-                    </div>
-                </div>
-                <!-- Item 9 -->
-                <div class="catalog-item">
-                    <img src="https://images.unsplash.com/photo-1522337094846-8a8101f3641c?q=80&w=200&auto=format&fit=crop" alt="Smoothing">
-                    <div class="catalog-info">
-                        <h4>Smoothing Keratin System</h4>
-                        <p class="Layanan-desc">Pelurusan rambut ikal mengembang menjadi lurus jatuh alami, lembut, berkilau, dan sangat mudah disisir.</p>
-                        <p class="price">Rp 500.000</p>
-                    </div>
-                </div>
-                <!-- Item 10 -->
-                <div class="catalog-item">
-                    <img src="https://images.unsplash.com/photo-1534774592507-488885376ad3?q=80&w=200&auto=format&fit=crop" alt="Perming">
-                    <div class="catalog-info">
-                        <h4>Korean Down Perm</h4>
-                        <p class="Layanan-desc">Meratakan rambut samping yang jingrak/mengembang (side-hair) khas gaya pria Korea agar teratur rapi menempel.</p>
-                        <p class="price">Rp 250.000</p>
-                    </div>
-                </div>
-                <!-- Item 11 -->
-                <div class="catalog-item">
-                    <img src="https://images.unsplash.com/photo-1527799841617-f1ad44224ad6?q=80&w=200&auto=format&fit=crop" alt="Hair Wash">
-                    <div class="catalog-info">
-                        <h4>Wash & Hair Styling Only</h4>
-                        <p class="Layanan-desc">Layanan cuci rambut bersih dengan air hangat, dilanjutkan dengan pengeringan blow dry dan penataan rambut profesional.</p>
-                        <p class="price">Rp 75.000</p>
-                    </div>
-                </div>
-                <!-- Item 12 -->
-                <div class="catalog-item">
-                    <img src="https://images.unsplash.com/photo-1559599101-3097022af86f?q=80&w=200&auto=format&fit=crop" alt="Detox Scalp">
-                    <div class="catalog-info">
-                        <h4>Deep Scalp Detoxification</h4>
-                        <p class="Layanan-desc">Pembersihan kerak minyak minyak berlebih, sisa ketombe, dan kotoran folikel menggunakan produk exfoliate scrub kulit kepala.</p>
-                        <p class="price">Rp 175.000</p>
-                    </div>
-                </div>
-                <!-- Item 13 -->
-                <div class="catalog-item">
-                    <img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?q=80&w=200&auto=format&fit=crop" alt="Root Touch Up">
-                    <div class="catalog-info">
-                        <h4>Root Touch-Up Coloring</h4>
-                        <p class="Layanan-desc">Pewarnaan ulang khusus area akar rambut yang baru tumbuh (ubanan/rambut asli hitam) agar sewarna dengan ujung rambut.</p>
-                        <p class="price">Rp 250.000</p>
-                    </div>
-                </div>
-                <!-- Item 14 -->
-                <div class="catalog-item">
-                    <img src="https://images.unsplash.com/photo-1582095133179-bfd08e2fc6b3?q=80&w=200&auto=format&fit=crop" alt="Hair Mask">
-                    <div class="catalog-info">
-                        <h4>Deep Repair Hair Mask</h4>
-                        <p class="Layanan-desc">Masker pelembab berkonsentrasi tinggi untuk mengembalikan kelembutan batang rambut kering akibat paparan kimia atau alat catok.</p>
-                        <p class="price">Rp 110.000</p>
-                    </div>
-                </div>
-                <!-- Item 15 -->
-                <div class="catalog-item">
-                    <img src="https://images.unsplash.com/photo-1503919545889-aef636e10ad4?q=80&w=200&auto=format&fit=crop" alt="Kids Cut">
-                    <div class="catalog-info">
-                        <h4>Junior Haircut (Anak)</h4>
-                        <p class="Layanan-desc">Pangkas rambut anak-anak usia di bawah 10 tahun dengan metode sabar dan ramah agar buah hati Anda merasa nyaman.</p>
-                        <p class="price">Rp 80.000</p>
-                    </div>
-                </div>
-                <!-- Item 16 -->
-                <div class="catalog-item">
-                    <img src="https://images.unsplash.com/photo-150351914875-452162b0f3f1?q=80&w=200&auto=format&fit=crop" alt="Hot Shave">
-                    <div class="catalog-info">
-                        <h4>Royal Hot Towel Shave</h4>
-                        <p class="Layanan-desc">Sensasi cukur kumis jenggot premium penutup handuk hangat untuk merilekskan pori kulit, bebas iritasi wajah.</p>
-                        <p class="price">Rp 70.000</p>
-                    </div>
-                </div>
-                <!-- Item 17 -->
-                <div class="catalog-item">
-                    <img src="https://images.unsplash.com/photo-1608248597481-496100c80836?q=80&w=200&auto=format&fit=crop" alt="Hair Vitamin">
-                    <div class="catalog-info">
-                        <h4>Serum & Vitamin Infusion</h4>
-                        <p class="Layanan-desc">Pemberian serum minyak esensial multivitamin rambut untuk mengunci kilau alami dan melubrikasi batang luar pelindung.</p>
-                        <p class="price">Rp 50.000</p>
-                    </div>
-                </div>
-                <!-- Item 18 -->
-                <div class="catalog-item">
-                    <img src="https://images.unsplash.com/photo-1620331311520-246422fd82f9?q=80&w=200&auto=format&fit=crop" alt="Highlight">
-                    <div class="catalog-info">
-                        <h4>Foil Highlight Accents</h4>
-                        <p class="Layanan-desc">Pemberian aksen garis warna terang menggunakan aluminum foil untuk memberikan tekstur kontras garis rambut yang estetik.</p>
-                        <p class="price">Rp 300.000</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. HASIL TREATMENT -->
-        <section id="gallery" class="gallery-section">
-            <h2 class="section-title">Hasil Treatment Kami</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=400&auto=format&fit=crop" alt="Treatment 1">
-                    <div class="gallery-overlay"><h4>Textured Multi-Layered Fade</h4></div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1621833601140-44bf350731f5?q=80&w=400&auto=format&fit=crop" alt="Treatment 2">
-                    <div class="gallery-overlay"><h4>Beard Grooming Sharp Edge</h4></div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=400&auto=format&fit=crop" alt="Treatment 3">
-                    <div class="gallery-overlay"><h4>Platinum Silver Balayage</h4></div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1605497746444-177369a42e5d?q=80&w=400&auto=format&fit=crop" alt="Treatment 4">
-                    <div class="gallery-overlay"><h4>French Crop Contour</h4></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 6. GALERI PRODUK -->
-        <section id="products" class="products-section">
-            <h2 class="section-title">Koleksi Produk Kami</h2>
-            <div class="products-grid">
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1608248597481-496100c80836?q=80&w=300&auto=format&fit=crop" alt="Pomade">
-                    <h3>Matte Clay Pomade</h3>
-                    <p>Strong hold, natural matte finish untuk ketahanan gaya rambut seharian penuh.</p>
-                    <span class="product-price">Rp 135.000</span>
-                </div>
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?q=80&w=300&auto=format&fit=crop" alt="Shampoo">
-                    <h3>Scalp Purifying Shampoo</h3>
-                    <p>Diformulasikan khusus untuk detoks kulit kepala dari minyak berlebih dan ketombe.</p>
-                    <span class="product-price">Rp 160.000</span>
-                </div>
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=300&auto=format&fit=crop" alt="Hair Serum">
-                    <h3>Premium Hair Growth Serum</h3>
-                    <p>Nutrisi konsentrat kaya biotin untuk merangsang kekuatan akar rambut rontok.</p>
-                    <span class="product-price">Rp 210.000</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- 7. PILIHAN STYLIST & CAPSTER (3 CABANG) -->
-        <section id="stylists" class="stylists-section">
-            <h2 class="section-title">Stylist & Capster Berdasarkan Cabang</h2>
-            <div class="branch-tabs">
-                <button class="tab-btn active" onclick="openBranch(event, 'cabang-REV')">Cabang Pondok Bambu</button>
-                <button class="tab-btn" onclick="openBranch(event, 'cabang-JOCA')">Cabang Pondok Kopi</button>
-                <button class="tab-btn" onclick="openBranch(event, 'cabang-CALLA')">Cabang Duren Sawit</button>
-            </div>
-
-            <div class="stylist-tab-content" style="margin-top: 30px;">
-                <!-- 1. Cabang Pondok Bambu -->
-                <div id="cabang-REV" class="branch-content active">
-                    <div class="stylist-grid">
-                        <div class="stylist-card">
-                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=300&auto=format&fit=crop" alt="RIAN">
-                            <h4 style="margin-top: 15px;">RIAN</h4>
-                            <p class="role">Stylist</p>
-                        </div>
-                        <div class="stylist-card">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300&auto=format&fit=crop" alt="LUNG">
-                            <h4 style="margin-top: 15px;">LUNG</h4>
-                            <p class="role">Barberman</p>
-                        </div>
-                        <div class="stylist-card">
-                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=300&auto=format&fit=crop" alt="DIVI">
-                            <h4 style="margin-top: 15px;">DIVI</h4>
-                            <p class="role">Stylist</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 2. Cabang Pondok Kopi -->
-                <div id="cabang-JOCA" class="branch-content">
-                    <div class="stylist-grid">
-                        <div class="stylist-card">
-                            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=300&auto=format&fit=crop" alt="DEA">
-                            <h4 style="margin-top: 15px;">DEA</h4>
-                            <p class="role">Professional Capster</p>
-                        </div>
-                        <div class="stylist-card">
-                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300&auto=format&fit=crop" alt="OBOY">
-                            <h4 style="margin-top: 15px;">OBOY</h4>
-                            <p class="role">Barberman</p>
-                        </div>
-                        <div class="stylist-card">
-                            <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?q=80&w=300&auto=format&fit=crop" alt="ARUL">
-                            <h4 style="margin-top: 15px;">ARUL</h4>
-                            <p class="role">Barberman</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 3. Cabang Duren Sawit -->
-                <div id="cabang-CALLA" class="branch-content">
-                    <div class="stylist-grid">
-                        <div class="stylist-card">
-                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=300&auto=format&fit=crop" alt="NINGRUM">
-                            <h4 style="margin-top: 15px;">NINGRUM</h4>
-                            <p class="role">Professional Capster</p>
-                        </div>
-                        <div class="stylist-card">
-                            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=300&auto=format&fit=crop" alt="KIKI">
-                            <h4 style="margin-top: 15px;">KIKI</h4>
-                            <p class="role">Stylist</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 8. ACADEMY SECTION -->
-        <section id="academy" class="academy-section">
-            <h2 class="section-title">DIHAIR Academy Movement</h2>
-            <p class="section-subtitle">Melahirkan Seniman Rambut Profesional Masa Depan</p>
-            <div class="academy-container">
-                <div class="academy-info">
-                    <h3>Akselerasi Bakat Kelas Dunia</h3>
-                    <p>DIHAIR Academy dirancang sebagai wadah akselerasi bakat bagi Anda yang ingin mendalami industri gaya rambut dari nol hingga level profesional. Kami menawarkan kurikulum berstandar internasional yang mencakup penguasaan teknik dasar guntingan, penataan rambut modern, seni pewarnaan kompleks, hingga manajemen bisnis barbershop/salon.</p>
-                    <p>Dipandu langsung oleh Master Stylist berpengalaman dengan metode praktek intensif 80% dan teori 20% menggunakan model hidup (live model) di setiap kelas.</p>
-                </div>
-                <div class="academy-gallery">
-                    <div class="academy-img-card">
-                        <img src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=200&auto=format&fit=crop" alt="Class">
-                        <div class="academy-tag">Live Demonstration</div>
-                    </div>
-                    <div class="academy-img-card">
-                        <img src="https://images.unsplash.com/photo-1521791136066-8a4e0274318a?q=80&w=200&auto=format&fit=crop" alt="Practice">
-                        <div class="academy-tag">Hands-On Practice</div>
-                    </div>
-                    <div class="academy-img-card">
-                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=200&auto=format&fit=crop" alt="Graduation">
-                        <div class="academy-tag">Certification Day</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </div> 
-    <!-- ======================================================== -->
-    <!-- AKHIR BACKGROUND MENYAMBUNG (PENUTUP .main-background-wrapper) -->
-    <!-- ======================================================== -->
-
-    <!-- 9. VOUCHER & PROMO -->
-    <section id="promo" class="promo-section">
-        <h2 class="section-title">Voucher & Diskon Eksklusif</h2>
-        <div class="promo-grid">
-            <div class="promo-card">
-                <div class="promo-badge">HOT PROMO</div>
-                <h3>Diskon Layanan Perdana 20%</h3>
-                <p>Khusus kunjungan pertama Anda di cabang manapun untuk seluruh layanan pangkas rambut.</p>
-                <div class="coupon-code">KODE: <span>DIHAIRNEW20</span></div>
-            </div>
-            <div class="promo-card">
-                <div class="promo-badge" style="background-color: #444;">WEEKDAY</div>
-                <h3>Treatment Voucher Rp 50k</h3>
-                <p>Potongan langsung untuk layanan Hair Coloring & Balayage setiap hari Senin - Kamis jam 10.00-14.00 WIB.</p>
-                <div class="coupon-code">KODE: <span>DIHAIRGLOW</span></div>
-            </div>
-        </div>
+    <section class="intro section-pad-compact">
+      <div class="narrow-copy"><p class="eyebrow">HAIR · BEAUTY · NAIL</p><h2>A modern studio for personal style, beauty and self-expression.</h2><p>Compact premium space for haircut, color, treatment & nail — tanpa label, tanpa berlebihan.</p><a class="text-link" href="pages/about.html">DISCOVER DI HAIR <span>→</span></a></div>
     </section>
 
-    <!-- 10. KERJASAMA / B2B BUSINESS -->
-    <section id="b2b" class="b2b-section">
-        <div class="b2b-card">
-            <i class="fa-solid fa-briefcase b2b-icon"></i>
-            <h3>Corporate Collaboration & Jaringan Kemitraan</h3>
-            <p>Kami membuka kesempatan kerjasama komersial, penyediaan produk untuk korporasi, kemitraan acara event khusus, sponsorship, hingga peluang franchise studio gaya rambut premium kami.</p>
-            <p class="b2b-contact">Hubungi Kontak Resmi Business Development kami:</p>
-            <a href="https://wa.me/6281234567890" target="_blank" class="btn-b2b">
-                <i class="fa-brands fa-whatsapp"></i> WHATSAPP BUSINESS
-            </a>
-        </div>
+    <section class="signature section-pad-compact" id="services">
+      <div class="section-head"><div><p class="eyebrow">SIGNATURE SERVICES</p><h2>THE DI HAIR<br><em>EXPERIENCE</em></h2></div><a class="text-link desktop-only" href="pages/services.html">EXPLORE SERVICES <span>→</span></a></div>
+      <div class="snap-row" id="signatureServices" data-carousel data-carousel-label="Layanan signature DI HAIR"></div>
+      <div class="mobile-gesture">SWIPE →</div>
+      <a class="text-link mobile-only" href="pages/services.html">EXPLORE SERVICES <span>→</span></a>
     </section>
 
-    <!-- 11. FOOTER -->
-    <footer>
-        <p>© 2026 DIHAIR STUDIO Group. All Rights Reserved. Powered by Zenwel Booking Engine.</p>
-    </footer>
+    <section class="signature section-pad-compact" id="featured-packages">
+      <div class="section-head"><div><p class="eyebrow">CURATED PACKAGES</p><h2>Signature<br><em>packages.</em></h2></div><a class="text-link desktop-only" href="pages/packages.html">VIEW ALL PACKAGES <span>→</span></a></div>
+      <div class="pkg-grid" id="homePackages" data-carousel data-carousel-label="Paket layanan DI HAIR"></div>
+      <div class="mobile-gesture">SWIPE →</div>
+      <a class="text-link mobile-only" href="pages/packages.html">VIEW ALL PACKAGES <span>→</span></a>
+    </section>
 
-    <script>
-        // Logik Tab Cabang Stylist
-        function openBranch(evt, branchName) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("branch-content");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].classList.remove("active");
-            }
-            tablinks = document.getElementsByClassName("tab-btn");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].classList.remove("active");
-            }
-            document.getElementById(branchName).classList.add("active");
-            evt.currentTarget.classList.add("active");
-        }
+    <section class="split-story section-pad-compact" id="treatment">
+      <div class="story-image" style="--pos-d:50% 45%;--pos-m:50% 40%;background-image:url('https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&crop=entropy&w=1400&h=950&q=78')"></div>
+      <div class="story-copy"><p class="eyebrow">MORE THAN A HAIRCUT</p><h2>Style<br><em>without labels.</em></h2><p>Dari haircut presisi, coloring dimensional, smoothing keratin, perm, sampai nail care. Pilih kebutuhanmu — artist kami mengarahkan sisanya.</p><div class="story-links"><a href="pages/services.html">HAIR & COLOR <span>→</span></a><a href="pages/packages.html">PACKAGES <span>→</span></a><a href="pages/products.html">DI HAIR PRODUCTS — COMING SOON <span>→</span></a></div></div>
+    </section>
 
-        // Logik Hamburger Menu Toggle Mobile
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuToggle = document.querySelector('.menu-toggle');
-            const navLinks = document.querySelector('.nav-links');
-            
-            menuToggle.addEventListener('click', function() {
-                navLinks.classList.toggle('show');
-                const icon = menuToggle.querySelector('i');
-                if(navLinks.classList.contains('show')) {
-                    icon.className = 'fa-solid fa-xmark';
-                } else {
-                    icon.className = 'fa-solid fa-bars';
-                }
-            });
+    <section class="work section-pad-compact" id="work">
+      <div class="section-head"><div><p class="eyebrow">OUR WORK</p><h2>Real results.<br><em>Real people.</em></h2></div><a class="text-link desktop-only" href="pages/our-work.html">VIEW ALL WORK <span>→</span></a></div>
+      <div class="gallery-row" id="homeGallery" data-carousel data-carousel-label="Galeri hasil kerja DI HAIR"></div><div class="mobile-gesture">SWIPE →</div>
+      <a class="text-link mobile-only" href="pages/our-work.html">VIEW ALL WORK <span>→</span></a>
+    </section>
 
-            // Tutup menu saat link diklik
-            const links = document.querySelectorAll('.nav-links a');
-            links.forEach(link => {
-                link.addEventListener('click', function() {
-                    navLinks.classList.remove('show');
-                    menuToggle.querySelector('i').className = 'fa-solid fa-bars';
-                });
-            });
-        });
-    </script>
+    <section class="artists section-pad-compact" id="artists">
+      <div class="section-head"><div><p class="eyebrow">OUR ARTISTS</p><h2>The people<br><em>behind the work.</em></h2></div><a class="text-link desktop-only" href="pages/artists.html">MEET ALL ARTISTS <span>→</span></a></div>
+      <div class="artist-row" id="homeArtists" data-carousel data-carousel-label="Artist DI HAIR"></div><div class="mobile-gesture">SWIPE →</div>
+      <a class="text-link mobile-only" href="pages/artists.html">MEET ALL ARTISTS <span>→</span></a>
+    </section>
+
+    <section class="locations section-pad-compact" id="locations">
+      <div class="section-head"><div><p class="eyebrow">TWO LOCATIONS</p><h2>Find your<br><em>DI HAIR.</em></h2></div><a class="text-link desktop-only" href="pages/locations.html">VIEW LOCATIONS <span>→</span></a></div>
+      <div class="location-row" id="homeLocations" data-carousel data-carousel-label="Lokasi DI HAIR"></div><div class="mobile-gesture">SWIPE →</div>
+      <a class="text-link mobile-only" href="pages/locations.html">VIEW LOCATIONS <span>→</span></a>
+    </section>
+
+    <section class="nail-feature section-pad-compact" id="nail">
+      <div class="nail-copy"><p class="eyebrow">PRODUCT ECOSYSTEM</p><h2>DI HAIR<br><em>Products — Coming Soon.</em></h2><p>Shampoo, conditioner, treatment, styling & scalp care brand DI HAIR. Struktur siap — tinggal ganti data saat produk fisik tersedia.</p><a class="button button-dark" href="pages/products.html">VIEW COLLECTION</a></div>
+      <div class="nail-image" style="--pos-d:60% 55%;--pos-m:55% 45%;background-image:url('https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&crop=entropy&w=1400&h=950&q=78')"></div>
+    </section>
+
+    <section class="section-pad-compact"><div class="booking-banner section-pad-compact" id="booking"><div><p class="eyebrow eyebrow-light">READY FOR YOUR NEXT LOOK?</p><h2>Book your<br><em>appointment.</em></h2><p>Pilih layanan & jadwal via booking online Zenwel.</p></div><a class="button button-light" href="https://widget.zenwel.com/78903111/dihair-studio?lang=id&lid=17893" target="_blank" rel="noopener">BOOK NOW ↗</a></div></section>
+
+    <section class="legacy-grid section-pad-compact">
+      <a class="legacy-card" href="pages/about.html"><p class="eyebrow">STUDIO</p><h3>ABOUT<br><em>DI HAIR</em></h3><span>DISCOVER →</span></a>
+      <a class="legacy-card" href="pages/academy.html"><p class="eyebrow">LEARN</p><h3>DI HAIR<br><em>ACADEMY</em></h3><span>DISCOVER →</span></a>
+      <a class="legacy-card" href="pages/program.html"><p class="eyebrow">CURRENT</p><h3>PROGRAM<br><em>& PROMO</em></h3><span>VIEW →</span></a>
+      <a class="legacy-card" href="pages/franchise.html"><p class="eyebrow">BUSINESS</p><h3>FRANCHISE<br><em>WITH US</em></h3><span>CONTACT →</span></a>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="js/data.js"></script><script src="js/main.js"></script>
 </body>
 </html>
