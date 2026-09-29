@@ -1,0 +1,12 @@
+{
+  "name": "dihair-studio-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "DI HAIR STUDIO & NAIL — static website (HTML/CSS/JS). Tanpa dependensi; hanya file statis + server produksi ringan.",
+  "scripts": {
+    "start": "node serve.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
