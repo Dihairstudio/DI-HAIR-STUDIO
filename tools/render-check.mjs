@@ -25,8 +25,8 @@ const helpersSrc = mainSrc.slice(
   mainSrc.indexOf('const PIC = {'),
   mainSrc.indexOf('\nfunction header() {')
 );
-const { pic, picTag, heroPhoto, locationPhoto, photoUrl, photoId, PIC } = new Function(
-  'DIHAIR', `${helpersSrc}\n;return { pic, picTag, heroPhoto, locationPhoto, photoUrl, photoId, PIC };`
+const { pic, picTag, heroPhoto, locationPhoto, photoUrl, photoId, PIC, HERO_TIERS } = new Function(
+  'DIHAIR', `${helpersSrc}\n;return { pic, picTag, heroPhoto, locationPhoto, photoUrl, photoId, PIC, HERO_TIERS };`
 )(DIHAIR);
 
 let failed = 0;
@@ -52,22 +52,34 @@ for (const url of urls) {
     `dead id still requested: ${out}`, 'photoSubstitute did not remap this URL');
   ok(/[?&]w=640/.test(out) && /[?&]h=400/.test(out), `pic() missing explicit size: ${out}`);
   ok(/[?&]crop=(faces|entropy)/.test(out), `pic() missing crop strategy: ${out}`);
-  ok(/[?&]q=78/.test(out), `pic() missing q=78: ${out}`);
+  ok(/[?&]q=72/.test(out), `pic() missing q=72: ${out}`);
+  ok(/auto=format%2Ccompress/.test(out), `pic() must ask for auto=format,compress (plain auto=format shipped 960 KB PNGs): ${out}`);
   used.add(photoId(photoUrl(url)));
 }
 
 /* --- 2. hero markup ------------------------------------------------------ */
 const slide = DIHAIR.heroSlides[0];
-const heroHtml = heroPhoto(slide);
+const heroHtml = heroPhoto(slide, true);
 ok(heroHtml.includes('<picture>'), 'hero markup lost its <picture> wrapper');
-ok(heroHtml.includes('media="(max-width:760px)"'), 'hero markup has no portrait source for mobile');
 ok(heroHtml.includes('fetchpriority="high"'), 'hero image is not marked as the LCP candidate');
 ok(/--pos-d:[^"]+/.test(heroHtml) && /--pos-m:[^"]+/.test(heroHtml), 'hero image carries no focal points');
-const [heroW, heroH] = PIC.hero.box;
-const heroDesktop = pic(slide.image, heroW, heroH);
-ok(heroHtml.includes(`src="${heroDesktop}"`), `hero desktop src is not the ${heroW}x${heroH} crop`, heroDesktop);
+/* hero is art-directed per width AND height cell, so the crop ratio can follow
+   the box on phones, tablets, laptops, desktops and ultrawides alike */
+ok(HERO_TIERS.length >= 6, `hero has only ${HERO_TIERS.length} art-direction tiers`);
+for (const t of HERO_TIERS) {
+  const media = heroHtml.includes(`media="(min-width:${t.w[0]}px)`);
+  ok(media, `hero tier ${t.w[0]}-${t.w[1]} x h${t.h[0]}-${t.h[1]} has no <source>`);
+  ok(heroHtml.includes(pic(slide.image, t.box[0], t.box[1])),
+    `hero tier ${t.w[0]}-${t.w[1]} does not request its ${t.box[0]}x${t.box[1]} crop`);
+  ok(heroHtml.includes(pic(slide.image, t.box[0] * 2, t.box[1] * 2)),
+    `hero tier ${t.w[0]}-${t.w[1]} has no 2x candidate (retina would upscale)`);
+}
+/* only the first slide is the LCP candidate */
+ok(heroPhoto(slide, false).includes('fetchpriority="low"'),
+  'non-first hero slide still claims fetchpriority=high');
 
 /* --- 3. static fallback shares the script's request ---------------------- */
+const heroDesktop = pic(slide.image, PIC.hero.box[0], PIC.hero.box[1]);
 const indexHtml = readFileSync(join(ROOT, 'index.html'), 'utf8');
 const bg = (indexHtml.match(/--bg:url\('([^']+)'\)/) || [])[1];
 ok(!!bg, 'index.html no longer has a static hero background');
@@ -93,20 +105,59 @@ ok(rawHits.length === 0,
   `${rawHits.length} page image(s) bypass picTag() -> no crop box, srcset, focal point or 404 remap`,
   rawHits.join('\n     '));
 
-/* --- 6. location cards are art-directed (wide crop vs mobile crop) -------- */
+/* --- 6. location cards are art-directed per breakpoint ------------------- */
 const loc = (DIHAIR.locations || [])[0];
 const locHtml = locationPhoto(loc);
-const [locMw, locMh] = PIC.location.mobile;
 ok(locHtml.includes('<picture>'), 'location markup lost its <picture> wrapper');
-ok(locHtml.includes('media="(max-width:760px)"'), 'location markup has no mobile-only crop source');
-ok(locHtml.includes(pic(loc.image, locMw, locMh)),
-  `location mobile srcset does not request the ${locMw}x${locMh} crop`);
-const locSingle = [['js/main.js', mainSrc],
-  ...pageFiles.map(f => [f, readFileSync(join(ROOT, f), 'utf8')])]
-  .filter(([, text]) => /picTag\([^)]*'location'/.test(text)).map(([f]) => f);
-ok(locSingle.length === 0,
-  `location card still uses the single-crop picTag() -> one crop for two card shapes`,
-  locSingle.join(', '));
+for (const t of PIC.location.tiers) {
+  ok(locHtml.includes(pic(loc.image, t.box[0], t.box[1])),
+    `location tier ${t.media || 'default'} does not request its ${t.box[0]}x${t.box[1]} crop`);
+  ok(locHtml.includes(pic(loc.image, t.box[0] * 2, t.box[1] * 2)),
+    `location tier ${t.media || 'default'} has no 2x candidate`);
+}
+/* location cards are tiered on the same 6 bands as every other card */
+ok(PIC.location.tiers[0].media === '(max-width:479px)',
+  'location must art-direct from the smallest band, not jump straight to desktop');
+/* locationPhoto delegates to picTag('location'), which is tiered like every
+   other card — one check, not two code paths */
+ok(/function locationPhoto\([^)]*\)\s*\{[^}]*return picTag\(loc\.image,\s*'location'/.test(mainSrc),
+  'locationPhoto must delegate to the tiered picTag() so every card uses one code path');
+
+/* --- 7. every card part is art-directed with 2x candidates ---------------- */
+for (const [name, part] of Object.entries(PIC)) {
+  if (name === 'hero') continue;
+  ok(Array.isArray(part.tiers) && part.tiers.length >= 3,
+    `PIC.${name} has no per-breakpoint tiers`);
+  for (const t of part.tiers || []) {
+    ok(typeof t.sizes === 'string' && t.sizes.length > 0, `PIC.${name} tier has no sizes hint`);
+  }
+}
+
+/* --- 8. no page hardcodes a photo URL outside the pic() pipeline ---------- */
+const literalHits = [];
+for (const file of pageFiles) {
+  const text = readFileSync(join(ROOT, file), 'utf8');
+  for (const m of text.matchAll(/(?:background-image:\s*url\(|src=")(https:\/\/images\.unsplash\.com\/[^"')\s]*[?&][^"')\s]+)/g))
+    literalHits.push(`${file}: ${m[1].slice(0, 80)}`);
+}
+ok(literalHits.length === 0,
+  `${literalHits.length} hardcoded photo URL(s) bypass pic() -> no q/compress, no 404 remap, no focal point`,
+  literalHits.join('\n     '));
+for (const [file, sel] of [['index.html', 'story-image'], ['index.html', 'nail-image'],
+  ['pages/about.html', 'story-image']]) {
+  const text = readFileSync(join(ROOT, file), 'utf8');
+  ok(new RegExp(`${sel}[^>]*data-photo=`).test(text),
+    `${file} .${sel} is not driven by data-photo -> it bypasses the pic() pipeline`);
+}
+/* data-photo elements have no URL in the markup, so they must be painted by
+   panels() and must have a neutral CSS well underneath for the no-JS case. */
+ok(/\$\$\('\[data-photo\]'\)/.test(helpersSrc) && /backgroundImage/.test(helpersSrc),
+  'panels() no longer paints [data-photo] elements -> they would stay empty');
+const cssText = readFileSync(join(ROOT, 'css', 'style.css'), 'utf8');
+ok(/\.story-image,\.nail-image\{[^}]*background-color/.test(cssText),
+  '.story-image/.nail-image lost their no-JS background-color well');
+ok(/\.concept-frame img\{[^}]*background:/.test(cssText),
+  '.concept-frame img has no no-JS background -> shows a broken-image icon without JS');
 
 console.log(`${failed === 0 ? 'PASS' : `${failed} check(s) failed`} — ${urls.length} photo URLs, ${used.size} unique photos, ${DIHAIR.heroSlides.length} hero slides`);
 process.exit(failed ? 1 : 0);

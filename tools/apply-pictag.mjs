@@ -25,9 +25,10 @@ const edits = [
     '<img src="${a.image}" alt="${a.title}" loading="lazy">',
     "${picTag(a.image, 'pkg', a.title)}"],
   /* artist portraits: tall crop, 72vw on mobile (see PIC.artist) ----------- */
+  /* capped pages need the *Page crop tiers (their cards are max-width:1240px) */
   ['pages/artists.html',
     '<img src="${x.image}" alt="${x.name}" loading="lazy">',
-    "${picTag(x.image, 'artist', x.name)}"],
+    "${picTag(x.image, 'artistPage', x.name)}"],
   /* franchise page uses string concatenation, not a template literal ------- */
   ['pages/franchise.html',
     '<img src="+f.image+" alt="+f.name+" loading=lazy>',
@@ -39,7 +40,7 @@ const edits = [
   /* filterable gallery: portrait-ish crop for the masonry cards ------------ */
   ['pages/our-work.html',
     '<img src="${im}" alt="${t}" loading="lazy">',
-    "${picTag(im, 'gallery', t)}"],
+    "${picTag(im, 'galleryPage', t)}"],
   /* program cards are a 2-col grid on desktop -> 50vw wide crop ------------ */
   ['pages/program.html',
     '<img src="${p.image}" alt="${p.title}" loading="lazy">',

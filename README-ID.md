@@ -39,19 +39,23 @@ Nomor kerja sama tersimpan di halaman `pages/collaboration.html`.
 
 ## QA foto & render (tanpa browser)
 Semua gambar berjalan lewat helper di `js/main.js` (`pic()`, `picTag()`, `heroPhoto()`): crop eksplisit
-(w/h), `srcset` 1.6x, titik fokus per-foto (`DIHAIR.photos`) dan remap untuk foto yang sudah mati di
-Unsplash (`DIHAIR.photoSubstitute`). Empat skrip di `tools/` memeriksanya dari terminal:
+(w/h) per breakpoint, kandidat `srcset` 1x + 2x, `sizes` yang mengikuti lebar render sebenarnya, titik
+fokus per-foto (`DIHAIR.photos`) dan remap untuk foto yang sudah mati di Unsplash
+(`DIHAIR.photoSubstitute`). Foto diminta dengan `auto=format,compress` + `q=72` supaya CDN tidak
+pernah mengirim PNG mentah (sebelumnya satu foto sampai 960 KB). Empat skrip di `tools/` memeriksanya
+dari terminal:
 
 - `node tools/img-check.mjs audit` — cek semua URL foto masih hidup (HTTP 200). Id yang sudah mati tapi
   masih dipakai sebagai kunci `photoSubstitute` dilaporkan `SAFE`, bukan error.
 - `node tools/img-check.mjs probe <url|id> [...]` — cek manual satu/beberapa URL foto.
 - `node tools/img-check.mjs review <id> [...]` — unduh thumbnail 420px ke `tools/_review` (folder dev,
   bukan bagian `assets/`) untuk cek visual cepat.
-- `node tools/render-check.mjs` — smoke test render: setiap foto diminta dengan crop+q=78, `<picture>` hero
-  punya source portrait + `fetchpriority=high` + titik fokus, kartu lokasi punya `<picture>` dua crop
-  (banner desktop / mobile, bukan satu crop untuk dua bentuk kotak), fallback statis di `index.html` memakai
-  URL yang sama dengan skrip (hero tidak diunduh dua kali), semua foto punya titik fokus, dan tidak ada kartu
-  yang membuat `<img>` langsung dari URL data.
+- `node tools/render-check.mjs` — smoke test render: setiap foto diminta lewat `pic()` dengan crop +
+  `q=72` + `auto=format,compress`, tiap tier punya kandidat 2x (tidak ada upscale di retina), hero
+  art-directed per lebar+tinggi, hanya slide pertama yang `fetchpriority=high`, fallback statis di
+  `index.html` memakai URL yang sama dengan skrip (hero tidak diunduh dua kali), semua foto punya titik
+  fokus, tidak ada URL foto yang ditulis mati di HTML, dan tidak ada kartu yang membuat `<img>` langsung
+  dari URL data.
 - `node tools/responsive-check.mjs [lebar ...]` — audit layout di Chrome headless (CDP, tanpa dependensi):
   14 halaman × 13 lebar (320, 375, 390, 430, 600, 768, 834, 1024, 1280, 1366, 1440, 1536, 1920).
   Gagal bila ada overflow horizontal, elemen keluar viewport, foto gepeng/rusak/ukuran nol, header salah
@@ -72,9 +76,33 @@ diulang: kalau pola tidak ditemukan lagi, skrip hanya melaporkan "already applie
 - Tujuh halaman (`academy`, `artists`, `franchise`, `locations`, `our-work`, `program`, `services`) kini
   memakai `picTag()` — sebelumnya menulis `<img src="...">` mentah sehingga tanpa crop/titik fokus.
 - 13 grid menjadi carousel scroll-snap native (`data-carousel`) dengan tombol panah di desktop.
-- Kartu lokasi art-directed seperti hero: satu foto dikirim dalam dua crop — 1400×540 (banner) untuk
-  desktop, 700×480 untuk mobile — lewat `locationPhoto()` + `<source media="(max-width:760px)">`, karena
-  kotak kartunya berubah bentuk (48vw×220px vs 82vw×220px).
+- Setiap kartu kini punya satu crop per pita lebar (`PIC[part].tiers`, 6 pita) + kandidat 2x. Crop
+  dipilih dari ukuran kartu asli yang terukur di browser, jadi rasio file ≈ rasio kotak dan
+  `object-fit:cover` hanya memotong beberapa persen, bukan 30–50%.
+
+## Perbaikan ukuran gambar (2026-10)
+Audit ukuran gambar menemukan crop yang tidak cocok dengan kotak render-nya. Perbaikannya:
+- **Hero terpotong 64%**: `.hero` setinggi `min(78vh,860px)` sehingga rasio kotaknya berayun 0,37–5,0
+  tergantung lebar **dan tinggi** jendela; satu crop 2:1 tidak bisa melayani semuanya. Kini hero
+  art-directed per `(width, height)` di `HERO_TIERS` (18 `<source>`), dan rasio tiap tier dipilih
+  agar `cover` hanya memotong ≤25% (terukur 13–21% di viewport target). Layout hero tidak diubah.
+- **PNG 960 KB**: `auto=format` sempat mengembalikan `image/png` untuk `photo-1598452963314`
+  walau klien hanya menerima JPEG. Diganti `auto=format,compress` + `q=72` — file yang sama kini
+  27–39 KB (WebP 15–27 KB, AVIF 11–16 KB) dan format modern tetap dinegosiasi.
+- **Logo 264 KB untuk slot 52px**: `assets/logo/dihair-logo.png` di-downscale ke 128×128 (9,2 KB),
+  cukup untuk DPR 2 pada slot 52/58px, tampilan identik. Atribut `width`/`height` disamakan dengan
+  ukuran CSS.
+- **`sizes` meleset**: diganti dengan lebar render yang benar-benar terukur per pita (mis. kartu
+  service 15vw di 1920px, sebelumnya diklaim 23vw), dan tiap tier punya kandidat 2x sehingga tidak
+  ada upscale di layar retina.
+- **URL foto literal** (`.story-image`, `.nail-image` di `index.html`/`about.html`, dan gambar
+  concept di `academy.html`) sekarang memakai atribut `data-photo` yang diproses `panels()` lewat
+  `pic()` yang sama — dapat crop, `q`, dan remap 404 yang sama seperti kartu lain.
+- **Kartu program terpotong 53%** di 768px: kolom foto program hanya separuh lebar kartu saat card
+  masih 2-up, jadi crop-nya sendiri portrait di pita 761–1100px.
+- **Grid inline** (`grid-template-columns` di `artists.html`/`our-work.html`) yang mengalahkan aturan
+  carousel dihapus; kedua section itu kini memakai crop `*Page` (kontainer capped 1240px) terpisah
+  dari versi homepage yang full-bleed.
 
 ## Riwayat perbaikan responsive
 Audit `tools/responsive-check.mjs` (14 halaman × 13 lebar = 182 pemeriksaan) menemukan 2 bug layout;

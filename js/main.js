@@ -23,25 +23,183 @@ function asset(path) {
    Config lives in js/data.js: DIHAIR.photos (focal points),
    DIHAIR.photoSubstitute (404 photos), DIHAIR.heroSlides.
 
-   PIC[part] describes the box a photo is shown in: [w, h] in CSS px
-   (2x for retina) + the `sizes` hint. Because the delivered file is
-   requested with the same aspect ratio as its box, object-fit:cover only
-   has a couple of percent left to trim — that is what stops subjects from
-   being cut off. `crop=faces|entropy` keeps the subject inside that crop,
-   the focal point (--pos-d / --pos-m) fine-tunes it per breakpoint.
+   PIC[part].box is [w, h] in CSS px and is the aspect ratio the file is
+   REQUESTED at, so object-fit:cover has almost nothing left to trim.
+   `sizes` mirrors the real rendered width (measured in a browser, not
+   guessed), so the browser picks the right srcset candidate and never
+   upscales on a retina screen.
+
+   Hero is art-directed on width AND height (HERO_TIERS) because its box is
+   min(78vh, 860px) tall, so one fixed crop cannot serve both a 1024x768
+   tablet and a 2560x1440 desktop — that mismatch was the cause of the
+   "photo only shows a slice on one side" symptom.
    ============================================================= */
 const PIC = {
-  service: { box: [760, 545], sizes: '(max-width:760px) 78vw, (max-width:1100px) 46vw, 23vw' },
-  catalog: { box: [720, 420], sizes: '(max-width:760px) 92vw, (max-width:1100px) 46vw, 30vw' },
-  pkg: { box: [760, 430], sizes: '(max-width:760px) 92vw, (max-width:1100px) 46vw, 30vw' },
-  product: { box: [760, 590], sizes: '(max-width:760px) 92vw, (max-width:1100px) 46vw, 30vw' },
-  artist: { box: [660, 630], sizes: '(max-width:760px) 72vw, (max-width:1100px) 46vw, 23vw' },
-  location: { box: [1400, 540], sizes: '(max-width:1100px) 46vw, 48vw', mobile: [700, 480], mobileSizes: '82vw' },
-  gallery: { box: [700, 620], sizes: '(max-width:760px) 72vw, (max-width:1100px) 46vw, 23vw' },
-  story: { box: [1400, 950], sizes: '(max-width:760px) 95vw, 50vw' },
-  academy: { box: [1000, 640], sizes: '(max-width:760px) 95vw, 50vw' },
-  hero: { box: [2000, 1000], sizes: '100vw', mobile: [1080, 1620] }
+  /* Each part declares one crop per width band. Bands follow the real CSS
+     breakpoints: below 760px the card image heights drop (210 -> 190px etc.),
+     so the same width has a very different box ratio above and below it.
+     `box` is the crop requested from the CDN, sized to the widest card in the
+     band, and because its ratio matches that band's real box ratio,
+     object-fit:cover trims a few percent instead of 30-50%.
+     Each tier also carries a `sizes` hint matching the real rendered width,
+     so the 2x candidate is chosen on retina and never upscaled. */
+  service: {
+    tiers: [
+      { media: '(max-width:479px)', box: [340, 213], sizes: '76vw' },
+      { media: '(min-width:480px) and (max-width:600px)', box: [460, 215], sizes: '76vw' },
+      { media: '(min-width:601px) and (max-width:760px)', box: [580, 206], sizes: '76vw' },
+      { media: '(min-width:761px) and (max-width:1100px)', box: [380, 257], sizes: '32vw' },
+      { media: '(min-width:1101px) and (max-width:1499px)', box: [300, 238], sizes: '22vw' },
+      { box: [320, 237], sizes: '21vw' }
+    ]
+  },
+  /* Homepage sections .work / .artists / .locations are full-bleed, while the
+     inner pages wrap the same cards in max-width:1240px. That makes their
+     real card ratios diverge at wide viewports (artist is 1.91 full-bleed vs
+     0.81 capped at 2560px), so each part is declared twice: the homepage part
+     is used by renderHome(), the *Page variant by the dedicated page. */
+  gallery: {
+    tiers: [
+      { media: '(max-width:479px)', box: [320, 248], sizes: '72vw' },
+      { media: '(min-width:480px) and (max-width:600px)', box: [440, 263], sizes: '72vw' },
+      { media: '(min-width:601px) and (max-width:760px)', box: [560, 253], sizes: '72vw' },
+      { media: '(min-width:761px) and (max-width:1100px)', box: [380, 319], sizes: '32vw' },
+      { media: '(min-width:1101px) and (max-width:1499px)', box: [320, 291], sizes: '24vw' },
+      { box: [580, 335], sizes: '23vw' }
+    ]
+  },
+  galleryPage: {
+    tiers: [
+      { media: '(max-width:479px)', box: [320, 264], sizes: '72vw' },
+      { media: '(min-width:480px) and (max-width:600px)', box: [440, 263], sizes: '72vw' },
+      { media: '(min-width:601px) and (max-width:760px)', box: [560, 253], sizes: '72vw' },
+      { media: '(min-width:761px) and (max-width:1100px)', box: [380, 319], sizes: '32vw' },
+      { media: '(min-width:1101px) and (max-width:1499px)', box: [280, 275], sizes: '24vw' },
+      { box: [280, 289], sizes: '23vw' }
+    ]
+  },
+  artist: {
+    tiers: [
+      { media: '(max-width:479px)', box: [320, 302], sizes: '72vw' },
+      { media: '(min-width:480px) and (max-width:600px)', box: [440, 321], sizes: '72vw' },
+      { media: '(min-width:601px) and (max-width:760px)', box: [560, 309], sizes: '72vw' },
+      { media: '(min-width:761px) and (max-width:1100px)', box: [380, 369], sizes: '32vw' },
+      { media: '(min-width:1101px) and (max-width:1499px)', box: [320, 333], sizes: '24vw' },
+      { box: [580, 387], sizes: '23vw' }
+    ]
+  },
+  artistPage: {
+    tiers: [
+      { media: '(max-width:479px)', box: [320, 320], sizes: '72vw' },
+      { media: '(min-width:480px) and (max-width:600px)', box: [440, 321], sizes: '72vw' },
+      { media: '(min-width:601px) and (max-width:760px)', box: [560, 309], sizes: '72vw' },
+      { media: '(min-width:761px) and (max-width:1100px)', box: [380, 369], sizes: '32vw' },
+      { media: '(min-width:1101px) and (max-width:1499px)', box: [280, 315], sizes: '24vw' },
+      { box: [280, 333], sizes: '23vw' }
+    ]
+  },
+  catalog: {
+    tiers: [
+      { media: '(max-width:479px)', box: [400, 241], sizes: '92vw' },
+      { media: '(min-width:480px) and (max-width:600px)', box: [500, 219], sizes: '44vw' },
+      { media: '(min-width:601px) and (max-width:760px)', box: [340, 221], sizes: '46vw' },
+      { media: '(min-width:761px) and (max-width:1100px)', box: [420, 232], sizes: '46vw' },
+      { media: '(min-width:1101px) and (max-width:1499px)', box: [400, 222], sizes: '30vw' },
+      { box: [380, 221], sizes: '23vw' }
+    ]
+  },
+  pkg: {
+    tiers: [
+      { media: '(max-width:479px)', box: [400, 229], sizes: '92vw' },
+      { media: '(min-width:480px) and (max-width:600px)', box: [540, 276], sizes: '46vw' },
+      { media: '(min-width:601px) and (max-width:760px)', box: [700, 302], sizes: '92vw' },
+      { media: '(min-width:761px) and (max-width:1100px)', box: [500, 263], sizes: '46vw' },
+      { media: '(min-width:1101px) and (max-width:1499px)', box: [560, 265], sizes: '30vw' },
+      { box: [580, 287], sizes: '27vw' }
+    ]
+  },
+  product: {
+    tiers: [
+      { media: '(max-width:479px)', box: [400, 278], sizes: '92vw' },
+      { media: '(min-width:480px) and (max-width:600px)', box: [500, 325], sizes: '46vw' },
+      { media: '(min-width:601px) and (max-width:760px)', box: [340, 254], sizes: '92vw' },
+      { media: '(min-width:761px) and (max-width:1100px)', box: [360, 277], sizes: '32vw' },
+      { media: '(min-width:1101px) and (max-width:1499px)', box: [300, 259], sizes: '23vw' },
+      { box: [280, 255], sizes: '22vw' }
+    ]
+  },
+  /* program cards: the photo fills one full-height grid column, and that column
+     is only half as wide as the card below 760px. The box is therefore
+     portrait in a narrow 761-1100px window (where the card is still 2-up) and
+     landscape everywhere else, so it needs its own fine-grained split. */
+  story: {
+    tiers: [
+      { media: '(max-width:479px)', box: [400, 265], sizes: '92vw' },
+      { media: '(min-width:480px) and (max-width:600px)', box: [540, 263], sizes: '92vw' },
+      { media: '(min-width:601px) and (max-width:760px)', box: [700, 327], sizes: '92vw' },
+      { media: '(min-width:761px) and (max-width:899px)', box: [400, 494], sizes: '42vw' },
+      { media: '(min-width:900px) and (max-width:1100px)', box: [500, 455], sizes: '42vw' },
+      { media: '(min-width:1101px) and (max-width:1499px)', box: [580, 414], sizes: '40vw' },
+      { box: [560, 397], sizes: '38vw' }
+    ]
+  },
+  /* location cards: 82vw x 220 on mobile, then a 2-up banner that gets very
+     wide on large screens */
+  location: {
+    tiers: [
+      { media: '(max-width:479px)', box: [400, 250], sizes: '82vw' },
+      { media: '(min-width:480px) and (max-width:600px)', box: [540, 247], sizes: '82vw' },
+      { media: '(min-width:601px) and (max-width:760px)', box: [600, 311], sizes: '82vw' },
+      { media: '(min-width:761px) and (max-width:1100px)', box: [500, 267], sizes: '46vw' },
+      { media: '(min-width:1101px) and (max-width:1499px)', box: [660, 244], sizes: '46vw' },
+      { box: [1180, 282], sizes: '46vw' }
+    ]
+  },
+  locationPage: {
+    tiers: [
+      { media: '(max-width:479px)', box: [400, 265], sizes: '82vw' },
+      { media: '(min-width:480px) and (max-width:600px)', box: [540, 247], sizes: '82vw' },
+      { media: '(min-width:601px) and (max-width:760px)', box: [600, 311], sizes: '82vw' },
+      { media: '(min-width:761px) and (max-width:1100px)', box: [500, 267], sizes: '46vw' },
+      { media: '(min-width:1101px) and (max-width:1499px)', box: [560, 224], sizes: '46vw' },
+      { box: [560, 234], sizes: '46vw' }
+    ]
+  },
+  /* hero is art-directed separately, see HERO_TIERS. `box` is the default
+     <img> crop (a common laptop shape) and must stay byte-identical to the
+     static background in index.html, otherwise the hero is fetched twice. */
+  hero: { box: [1920, 1067], sizes: '100vw' }
 };
+
+/* Hero art direction on width AND height. The hero box is min(78vh, 860px)
+   tall and 100vw wide, so its aspect ratio swings from ~0.37 (tall phone) to
+   ~5.0 (short wide window). One fixed 2:1 crop therefore discarded 64% of the
+   frame at the worst viewport — that was the "photo only shows a slice on one
+   side" symptom. Each tier below ships the crop whose ratio is closest to the
+   box ratio for that width/height cell, so cover trims ~10-25% instead of 64%.
+   The `box` is sized to the widest viewport in the tier at 1x; the 2x
+   candidate comes from the same box, so retina screens stay sharp.
+   Order matters: the first matching <source> wins. */
+const HERO_TIERS = [
+  { w: [0, 479], h: [0, 800], ar: 0.75, box: [480, 640] },
+  { w: [0, 479], h: [801, 1150], ar: 0.56, box: [480, 857] },
+  { w: [0, 479], h: [1151, 99999], ar: 0.45, box: [480, 1067] },
+  { w: [480, 760], h: [0, 800], ar: 1.4, box: [761, 544] },
+  { w: [480, 760], h: [801, 1150], ar: 0.9, box: [761, 846] },
+  { w: [480, 760], h: [1151, 99999], ar: 0.67, box: [761, 1136] },
+  { w: [761, 1024], h: [0, 800], ar: 1.85, box: [1025, 554] },
+  { w: [761, 1024], h: [801, 1150], ar: 1.09, box: [1025, 940] },
+  { w: [761, 1024], h: [1151, 99999], ar: 1.0, box: [1025, 1025] },
+  { w: [1025, 1365], h: [0, 800], ar: 2.37, box: [1366, 576] },
+  { w: [1025, 1365], h: [801, 1150], ar: 1.7, box: [1366, 804] },
+  { w: [1025, 1365], h: [1151, 99999], ar: 1.45, box: [1366, 942] },
+  { w: [1366, 1919], h: [0, 800], ar: 3.08, box: [1920, 623] },
+  { w: [1366, 1919], h: [801, 1150], ar: 2.2, box: [1920, 873] },
+  { w: [1366, 1919], h: [1151, 99999], ar: 1.8, box: [1920, 1067] },
+  { w: [1920, 99999], h: [0, 800], ar: 4.28, box: [2560, 598] },
+  { w: [1920, 99999], h: [801, 1150], ar: 2.9, box: [2560, 883] },
+  { w: [1920, 99999], h: [1151, 99999], ar: 2.58, box: [2560, 992] }
+];
 
 function photoId(url) {
   const m = String(url || '').match(/photo-[0-9a-f-]+/i);
@@ -62,7 +220,12 @@ function photoFocal(url, bp) {
   return bp === 'm' ? (p.posM || p.pos || '') : (p.pos || '');
 }
 
-/* Ask the CDN for an explicit, subject-aware crop of `url`. */
+/* Ask the CDN for an explicit, subject-aware crop of `url`.
+   `auto=format,compress` is deliberate: with plain `auto=format` the CDN
+   answers image/png for a few sources even when the client only accepts
+   JPEG, which shipped files up to 960 KB. `compress` keeps the modern
+   format negotiation (AVIF/WebP when offered, JPEG as the floor) while
+   guaranteeing a photo-sized payload. */
 function pic(url, w, h) {
   const src = photoUrl(url);
   if (!src || !/images\.unsplash\.com/i.test(src)) return src; // local assets pass through
@@ -70,12 +233,12 @@ function pic(url, w, h) {
   const base = cut > -1 ? src.slice(0, cut) : src;
   const p = new URLSearchParams(cut > -1 ? src.slice(cut + 1) : '');
   const mode = ((DIHAIR.photos || {})[photoId(src)] || {}).mode;
-  p.set('auto', 'format');
+  p.set('auto', 'format,compress');
   p.set('fit', 'crop');
   p.set('w', String(w));
   if (h) p.set('h', String(h)); else p.delete('h');
   p.set('crop', mode === 'entropy' ? 'entropy' : 'faces');
-  p.set('q', '78');
+  p.set('q', '72');
   return base + '?' + p.toString();
 }
 
@@ -90,41 +253,87 @@ function focalStyle(url, desktopPos, mobilePos, extra) {
   return bits.length ? ` style="${bits.join(';')}"` : '';
 }
 
-/* <img> with art-directed srcset + focal point, for any card/part. */
+/* <img> for any card part, art-directed per breakpoint: one <source> per
+   tier plus a default <img>, each with a 1x and a 2x candidate so a retina
+   screen never upscales. Every tier's crop is close to the card's real box
+   ratio, so object-fit:cover trims only a few percent. */
 function picTag(url, part, alt) {
   const c = PIC[part] || PIC.gallery;
-  const [w, h] = c.box;
-  const [w2, h2] = [Math.round(w * 1.6), Math.round(h * 1.6)];
-  return `<img src="${pic(url, w, h)}" srcset="${pic(url, w, h)} ${w}w, ${pic(url, w2, h2)} ${w2}w" sizes="${c.sizes}" alt="${alt || ''}" loading="lazy" decoding="async"${focalStyle(url)}>`;
+  const tiers = c.tiers;
+  const srcs = tiers.slice(0, -1).map(t =>
+    `<source media="${t.media}" srcset="${pic(url, t.box[0], t.box[1])} ${t.box[0]}w, ${pic(url, t.box[0] * 2, t.box[1] * 2)} ${t.box[0] * 2}w" sizes="${t.sizes}">`
+  ).join('');
+  const d = tiers[tiers.length - 1];
+  return `<picture>${srcs}<img src="${pic(url, d.box[0], d.box[1])}" srcset="${pic(url, d.box[0], d.box[1])} ${d.box[0]}w, ${pic(url, d.box[0] * 2, d.box[1] * 2)} ${d.box[0] * 2}w" sizes="${d.sizes}" alt="${alt || ''}" loading="lazy" decoding="async"${focalStyle(url)}></picture>`;
 }
 
-/* Hero slide photo: portrait crop on mobile, wide crop on desktop, so the
-   mobile hero is not a zoomed-in slice of the desktop image. */
-function heroPhoto(slide) {
-  const c = PIC.hero;
-  const [w, h] = c.box;
-  const [mw, mh] = c.mobile;
-  const wide = [Math.round(w * 1.25), Math.round(h * 1.25)];
-  const tall = [Math.round(mw * 1.2), Math.round(mh * 1.2)];
+/* Background-image panels (.story-image, .nail-image) cannot use <picture>,
+   so they are delivered through the same pic() pipeline (identical crop
+   strategy, q, focal point and 404 remap as every card photo). Because a
+   background has no srcset, the request is sized from the panel's real
+   measured box at runtime and refreshed on resize, so the crop ratio always
+   matches the box it fills. The static URL in the HTML stays as the no-JS
+   fallback. */
+function panels() {
+  const apply = el => {
+    const url = el.dataset.photo;
+    if (!url) return;
+    const b = el.getBoundingClientRect();
+    if (!b.width || !b.height) return;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    /* cover the box at 1x and 2x, keeping the box's own ratio */
+    const w = Math.round(b.width * dpr);
+    const h = Math.round(w / (b.width / b.height));
+    const url2 = pic(url, w, h);
+    if (el.tagName === 'IMG') {
+      el.src = url2;
+      el.srcset = `${url2} ${w}w`;
+      el.sizes = '100%';
+    } else {
+      el.style.backgroundImage = `url("${url2}")`;
+    }
+  };
+  const all = $$('[data-photo]');
+  all.forEach(apply);
+  if (!all.length) return;
+  let t = 0;
+  const onResize = () => { clearTimeout(t); t = setTimeout(() => all.forEach(apply), 200); };
+  window.addEventListener('resize', onResize, { passive: true });
+  window.addEventListener('orientationchange', onResize, { passive: true });
+}
+
+/* Hero slide photo. The hero box is min(78vh,860px) tall and 100vw wide, so
+   its aspect ratio changes with BOTH viewport axes — one fixed crop left
+   >50% of the frame empty on one side on tablets and ultrawides. HERO_TIERS
+   ships a crop per width/height cell whose ratio is closest to that cell's
+   box, so cover has very little left to trim at any viewport shape.
+   Each tier offers a 1x and a 2x candidate; the 2x one matches the widest
+   viewport in that cell at DPR 2, so the hero stays sharp on retina. */
+function heroPhoto(slide, eager) {
+  const sources = HERO_TIERS.map(t => {
+    const [w, h] = t.box;
+    const [w2, h2] = [w * 2, h * 2];
+    const media = `(min-width:${t.w[0]}px)${t.w[1] < 99999 ? ` and (max-width:${t.w[1]}px)` : ''}` +
+      `${t.h[0] > 0 ? ` and (min-height:${t.h[0]}px)` : ''}${t.h[1] < 99999 ? ` and (max-height:${t.h[1]}px)` : ''}`;
+    return `      <source media="${media}" srcset="${pic(slide.image, w, h)} ${w}w, ${pic(slide.image, w2, h2)} ${w2}w" sizes="100vw">`;
+  }).join('\n');
+  /* default tier = the most common desktop shape; matches index.html's
+     static no-JS background so the hero is never downloaded twice */
+  const d = PIC.hero.box;
+  /* Only the first slide is the LCP candidate; the rest would otherwise all
+     claim fetchpriority=high and compete for bandwidth before they are shown. */
+  const prio = eager === false ? ' loading="lazy" fetchpriority="low"' : ' fetchpriority="high"';
   return `<picture>
-      <source media="(max-width:760px)" srcset="${pic(slide.image, mw, mh)} ${mw}w, ${pic(slide.image, tall[0], tall[1])} ${tall[0]}w" sizes="100vw">
-      <img class="hero-media" src="${pic(slide.image, w, h)}" srcset="${pic(slide.image, w, h)} ${w}w, ${pic(slide.image, wide[0], wide[1])} ${wide[0]}w" sizes="100vw" alt="${slide.alt || ''}" fetchpriority="high" decoding="async"${focalStyle(slide.image, slide.desktopPosition, slide.mobilePosition)}>
+${sources}
+      <img class="hero-media" src="${pic(slide.image, d[0], d[1])}" srcset="${pic(slide.image, d[0], d[1])} ${d[0]}w, ${pic(slide.image, d[0] * 2, d[1] * 2)} ${d[0] * 2}w" sizes="100vw" alt="${slide.alt || ''}"${prio} decoding="async"${focalStyle(slide.image, slide.desktopPosition, slide.mobilePosition)}>
     </picture>`;
 }
 
-/* Location card photo: the card box changes shape (≈82vw x 220px on mobile,
-   ≈48vw x 220px on desktop), so one crop cannot serve both. Same idea as the
-   hero: a near-4:3 crop for mobile, a wide banner crop for desktop. */
-function locationPhoto(loc) {
-  const c = PIC.location;
-  const [w, h] = c.box;
-  const [mw, mh] = c.mobile;
-  const wide = [Math.round(w * 1.6), Math.round(h * 1.6)];
-  const fit = [Math.round(mw * 1.6), Math.round(mh * 1.6)];
-  return `<picture>
-          <source media="(max-width:760px)" srcset="${pic(loc.image, mw, mh)} ${mw}w, ${pic(loc.image, fit[0], fit[1])} ${fit[0]}w" sizes="${c.mobileSizes}">
-          <img src="${pic(loc.image, w, h)}" srcset="${pic(loc.image, w, h)} ${w}w, ${pic(loc.image, wide[0], wide[1])} ${wide[0]}w" sizes="${c.sizes}" alt="${loc.name || ''}" loading="lazy" decoding="async"${focalStyle(loc.image)}>
-        </picture>`;
+/* Location cards go through the same per-tier art direction as every other
+   card. `variant` is 'Page' for the capped locations page and '' for the
+   full-bleed homepage row, whose card ratios differ at wide viewports. */
+function locationPhoto(loc, variant) {
+  return picTag(loc.image, 'location' + (variant || ''), loc.name || '');
 }
 
 
@@ -133,7 +342,7 @@ function header() {
   <header class="site-header" id="siteHeader">
     <div class="header-inner">
       <a class="brand" href="${page('index.html')}" aria-label="DI HAIR STUDIO & NAIL Home">
-        <img src="${asset('assets/logo/dihair-logo.png')}" alt="DI HAIR STUDIO & NAIL" width="60" height="60">
+        <img src="${asset('assets/logo/dihair-logo.png')}" alt="DI HAIR STUDIO & NAIL" width="52" height="52" decoding="async">
       </a>
 
       <nav class="desktop-nav" aria-label="Navigasi Utama">
@@ -207,7 +416,7 @@ function footer() {
     <div class="footer-top">
       <div class="footer-brand-col">
         <a href="${page('index.html')}" class="footer-logo-link">
-          <img src="${asset('assets/logo/dihair-logo.png')}" class="footer-logo" alt="DI HAIR STUDIO & NAIL">
+          <img src="${asset('assets/logo/dihair-logo.png')}" class="footer-logo" alt="DI HAIR STUDIO & NAIL" width="58" height="58" loading="lazy" decoding="async">
         </a>
         <h4 class="footer-brand-title">DI HAIR</h4>
         <p class="footer-brand-sub">Hair · Beauty · Nail</p>
@@ -497,7 +706,7 @@ function renderHero() {
     const tag = s.heading || 'h2';
     return `
     <article class="hero-slide${i === 0 ? ' is-active' : ''}" role="group" aria-roledescription="slide" aria-label="Slide ${i + 1} dari ${total}: ${s.eyebrow}">
-      ${heroPhoto(s)}
+      ${heroPhoto(s, i === 0)}
       <div class="hero-overlay"></div>
       <div class="hero-copy">
         <p class="eyebrow">${s.eyebrow}</p>
@@ -535,6 +744,8 @@ function renderHero() {
     link.fetchPriority = 'high';
     link.dataset.heroPreload = 'true';
     link.href = pic(first.image, PIC.hero.box[0], PIC.hero.box[1]);
+    link.imagesrcset = `${link.href} ${PIC.hero.box[0]}w, ${pic(first.image, PIC.hero.box[0] * 2, PIC.hero.box[1] * 2)} ${PIC.hero.box[0] * 2}w`;
+    link.imagesizes = PIC.hero.sizes;
     document.head.appendChild(link);
   }
 }
@@ -752,6 +963,7 @@ function watchImages() {
 
 function init() {
   initShell();
+  panels();
   renderHero();
   hero();
   renderHome();

@@ -350,8 +350,16 @@ main{display:block}
 .step-card h3{color:#fff;font-size:19px;margin:0 0 6px}
 .step-card p{color:rgba(255,255,255,.72);font-size:13px;margin:0}
 .concept-frame{border:1px dashed var(--line-strong);background:#fff;padding:26px;text-align:left}
+/* Story/nail panels and the academy concept photo are painted by JS through
+   pic(), so they carry no URL in the markup. Without JS they must still read
+   as intentional image wells instead of empty boxes / broken-image icons, so
+   they get the paper tone underneath. Once JS runs the photo covers it. */
+.story-image,.nail-image{background-color:var(--paper-soft)}
+.concept-frame img{background:var(--paper-soft);min-height:160px;width:100%;object-fit:cover}
+/* program cards are a 2-up grid: the photo fills one full-height column, so
+   its box is portrait below 1100px and landscape above (PIC.story tiers). */
 .program-card{display:grid;grid-template-columns:1fr 1fr;background:#fff;border:1px solid var(--line);overflow:hidden}
-.program-card img{width:100%;height:100%;min-height:280px;object-fit:cover}
+.program-card img{width:100%;height:100%;min-height:280px;object-fit:cover;object-position:var(--pos-d,50% 50%)}
 .program-body{padding:28px;display:flex;flex-direction:column;gap:10px;justify-content:center}
 img{overflow:hidden}
 a:focus-visible,button:focus-visible{outline:2px solid var(--taupe);outline-offset:2px}
