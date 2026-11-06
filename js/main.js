@@ -310,6 +310,16 @@ function panels() {
    Each tier offers a 1x and a 2x candidate; the 2x one matches the widest
    viewport in that cell at DPR 2, so the hero stays sharp on retina. */
 function heroPhoto(slide, eager) {
+  const isLocal = !/^https?:\/\//i.test(slide.image);
+  if (isLocal) {
+    /* Local file: skip srcset/art-direction — just a single <img> with the
+       resolved path (asset() handles the ../prefix for pages/ subdirectory). */
+    const prio = eager === false ? ' loading="lazy" fetchpriority="low"' : ' fetchpriority="high"';
+    const src = asset(slide.image);
+    return `<picture>
+      <img class="hero-media" src="${src}" alt="${slide.alt || ''}"${prio} decoding="async"${focalStyle(slide.image, slide.desktopPosition, slide.mobilePosition)}>
+    </picture>`;
+  }
   const sources = HERO_TIERS.map(t => {
     const [w, h] = t.box;
     const [w2, h2] = [w * 2, h * 2];

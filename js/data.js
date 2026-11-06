@@ -782,9 +782,9 @@ DIHAIR.heroSlides = [
     title: 'DI HAIR<br><em>STUDIO & NAIL</em>',
     copy: 'Your style.<br>Your signature.',
     cta: { text: 'BOOK NOW', href: ZENWEL_URL, external: true },
-    image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1000&q=85',
-    alt: 'Rambut bergelombang sehat dengan kilau alami hasil perawatan di DI HAIR STUDIO',
-    desktopPosition: '55% 55%',
+    image: 'assets/hero-12.png',
+    alt: 'Hasil hair treatment rambut sehat berkilau di DI HAIR STUDIO & NAIL',
+    desktopPosition: '50% 50%',
     mobilePosition: '50% 45%'
   },
   {
@@ -793,10 +793,10 @@ DIHAIR.heroSlides = [
     title: 'COLOR<br><em>YOUR WAY</em>',
     copy: 'Warna yang dirancang untuk personal style kamu.',
     cta: { text: 'EXPLORE COLOR', href: 'pages/services.html' },
-    image: 'https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?auto=format&fit=crop&w=1000&q=85',
-    alt: 'Rambut dengan warna lavender hasil hair coloring dimensional di DI HAIR STUDIO',
-    desktopPosition: '50% 55%',
-    mobilePosition: '50% 45%'
+    image: 'assets/hero-2.jpg',
+    alt: 'Hasil hair coloring dan pewarnaan rambut di DI HAIR STUDIO & NAIL',
+    desktopPosition: '65% 45%',
+    mobilePosition: '55% 40%'
   },
 
   {
