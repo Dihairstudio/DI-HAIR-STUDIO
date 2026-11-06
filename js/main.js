@@ -215,7 +215,8 @@ function photoUrl(url) {
 
 /* Focal point of a photo: 'd' (>=761px) or 'm' (<=760px). */
 function photoFocal(url, bp) {
-  const p = (DIHAIR.photos || {})[photoId(photoUrl(url))];
+  const clean = String(url || '').replace(/^\.\.\//, '');
+  const p = (DIHAIR.photos || {})[photoId(photoUrl(url)) || clean];
   if (!p) return '';
   return bp === 'm' ? (p.posM || p.pos || '') : (p.pos || '');
 }
@@ -228,7 +229,9 @@ function photoFocal(url, bp) {
    guaranteeing a photo-sized payload. */
 function pic(url, w, h) {
   const src = photoUrl(url);
-  if (!src || !/images\.unsplash\.com/i.test(src)) return src; // local assets pass through
+  if (!src || !/images\.unsplash\.com/i.test(src)) {
+    return /^https?:\/\//i.test(src) ? src : asset(src);
+  }
   const cut = src.indexOf('?');
   const base = cut > -1 ? src.slice(0, cut) : src;
   const p = new URLSearchParams(cut > -1 ? src.slice(cut + 1) : '');

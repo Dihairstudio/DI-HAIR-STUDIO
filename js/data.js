@@ -50,28 +50,28 @@ const DIHAIR = {
       "name": "RIAN",
       "role": "Stylist + Barberman",
       "branch": "REV",
-      "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=900&q=85",
+      "image": "assets/artists/rian.jpg",
       "specialty": "Precision Haircut, Creative Fade & Styling"
     },
     {
       "name": "YASIN",
       "role": "Barberman",
       "branch": "REV",
-      "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=85",
+      "image": "assets/artists/yasin.jpg",
       "specialty": "Classic Scissor Cut & Beard Sculpting"
     },
     {
       "name": "DIVI",
       "role": "Stylist Wanita",
       "branch": "REV",
-      "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=900&q=85",
+      "image": "assets/artists/divi.jpg",
       "specialty": "Layering, Balayage & Chemical Texturizing"
     },
     {
       "name": "DEA",
       "role": "Capster",
       "branch": "REV",
-      "image": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=900&q=85",
+      "image": "assets/artists/dea.jpg",
       "specialty": "Deep Scalp Wash & Head Acupressure"
     },
     {
@@ -768,7 +768,11 @@ DIHAIR.photos = {
   'photo-1598452963314-b09f397a5c48': { mode: 'entropy', pos: '50% 45%', posM: '50% 40%' },
   'photo-1604654894610-df63bc536371': { mode: 'entropy', pos: '60% 55%', posM: '55% 45%' },
   'photo-1610992015732-2449b76344bc': { mode: 'entropy', pos: '45% 45%', posM: '40% 45%' },
-  'photo-1622286342621-4bd786c2447c': { mode: 'entropy', pos: '50% 45%', posM: '50% 40%' }
+  'photo-1622286342621-4bd786c2447c': { mode: 'entropy', pos: '50% 45%', posM: '50% 40%' },
+  'assets/artists/rian.jpg': { pos: '50% 25%', posM: '50% 20%' },
+  'assets/artists/yasin.jpg': { pos: '50% 25%', posM: '50% 20%' },
+  'assets/artists/divi.jpg': { pos: '50% 25%', posM: '50% 20%' },
+  'assets/artists/dea.jpg': { pos: '50% 25%', posM: '50% 20%' }
 };
 
 
@@ -805,10 +809,10 @@ DIHAIR.heroSlides = [
     title: 'CARE<br><em>YOUR HAIR</em>',
     copy: 'Perawatan untuk rambut yang terasa lebih terawat.',
     cta: { text: 'VIEW TREATMENTS', href: 'pages/packages.html' },
-    image: 'https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=1000&q=85',
-    alt: 'Rambut bervolume dengan tekstur ikal hasil hair treatment di DI HAIR STUDIO',
-    desktopPosition: '50% 45%',
-    mobilePosition: '50% 30%'
+    image: 'assets/hero-3.jpg',
+    alt: 'Proses hair treatment dan penataan rambut oleh stylist di DI HAIR STUDIO & NAIL',
+    desktopPosition: '60% 65%',
+    mobilePosition: '55% 60%'
   },
   {
     eyebrow: 'NAIL CARE',
