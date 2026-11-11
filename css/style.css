@@ -311,13 +311,13 @@ em {
 .mobile-book:active{background:var(--tosca-dark)}
 .mobile-quick-wa{display:flex;justify-content:center;gap:8px;align-items:center;font-size:11px;font-weight:700;letter-spacing:.1em}
 /* ===== HERO compact 75-82vh ===== */
-.hero{position:relative;min-height:78vh;max-height:860px;display:flex;overflow:hidden;background:var(--dark-bg);margin-top:64px}
+.hero{position:relative;min-height:clamp(520px,78vh,860px);max-height:860px;display:flex;overflow:hidden;background:var(--dark-bg);margin-top:64px}
 .hero-slides{position:relative;width:100%;display:flex}
 .hero-slide{position:absolute;inset:0;opacity:0;transition:opacity .7s ease;background-size:cover;background-position:center;background-image:var(--bg)}
 .hero-slide.is-active{opacity:1;position:relative;width:100%}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,.28),rgba(10,10,10,.55) 70%,rgba(10,10,10,.65))}
-.hero-copy{position:relative;z-index:2;max-width:var(--container-max);margin:auto auto auto 0;padding:48px 4vw;color:#fff;width:100%}
-.hero-copy h1,.hero-copy h2{color:#fff;font-size:clamp(44px,6.2vw,84px);line-height:.98;margin:0 0 12px}
+.hero-copy{position:relative;z-index:2;max-width:var(--container-max);margin:auto auto auto 0;padding:48px 4vw 96px;color:#fff;width:100%}
+.hero-copy h1,.hero-copy h2{color:#fff;font-size:clamp(44px,6.2vw,84px);line-height:.98;margin:0 0 14px}
 .hero-copy p{color:rgba(255,255,255,.86);max-width:46ch;font-size:15px;margin:0 0 22px}
 .hero-arrow{position:absolute;bottom:26px;z-index:3;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25);width:44px;height:44px;cursor:pointer;font-size:16px}
 .hero-prev{right:120px}.hero-next{right:64px}
@@ -476,7 +476,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--tosca);outline-offs
 @media(max-width:760px){
 .section-pad{padding:48px 5vw}.section-pad-compact{padding:32px 5vw}
 .header-inner{min-height:60px}.nav-book{padding:11px 14px;font-size:10px}
-.hero{margin-top:60px;min-height:72vh}.hero-copy h1,.hero-copy h2{font-size:clamp(38px,11vw,52px)}
+.hero{margin-top:60px;min-height:72vh}.hero-copy{padding:36px 5vw 120px}.hero-copy h1,.hero-copy h2{font-size:clamp(38px,11vw,52px)}
 .hero-prev{right:108px}.hero-next{right:52px}
 .mobile-only{display:inline-flex!important}.desktop-only{display:none!important}
 .snap-row{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin:0 -5vw;padding:4px 5vw 12px}

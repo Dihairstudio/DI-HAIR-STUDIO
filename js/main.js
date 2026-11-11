@@ -355,7 +355,7 @@ function header() {
   <header class="site-header" id="siteHeader">
     <div class="header-inner">
       <a class="brand" href="${page('index.html')}" aria-label="DI HAIR STUDIO & NAIL Home">
-        <img src="${asset('assets/logo/dihair-logo.png')}" alt="DI HAIR STUDIO & NAIL" width="52" height="52" decoding="async">
+        <img src="${asset('assets/logo/logo-dihair-revisi.png')}" alt="DI HAIR STUDIO & NAIL" width="52" height="52" decoding="async">
       </a>
 
       <nav class="desktop-nav" aria-label="Navigasi Utama">
@@ -429,7 +429,7 @@ function footer() {
     <div class="footer-top">
       <div class="footer-brand-col">
         <a href="${page('index.html')}" class="footer-logo-link">
-          <img src="${asset('assets/logo/dihair-logo.png')}" class="footer-logo" alt="DI HAIR STUDIO & NAIL" width="58" height="58" loading="lazy" decoding="async">
+          <img src="${asset('assets/logo/black-logo-dihair.png')}" alt="DI HAIR STUDIO & NAIL" width="58" height="58" loading="lazy" decoding="async">
         </a>
         <h4 class="footer-brand-title">DI HAIR</h4>
         <p class="footer-brand-sub">Hair · Beauty · Nail</p>
@@ -769,12 +769,22 @@ function hero() {
   const slides = $$('.hero-slide', root);
   const dots = $$('.hero-dot', root);
   const status = $('.hero-status', root);
+  const bar = $('#heroProgress');
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let cur = 0, timer = null, hovering = false, focusing = false, inView = true;
+  let cur = 0, timer = null, inView = true;
+
+  const resetBar = () => {
+    if (!bar) return;
+    bar.style.animation = 'none';
+    bar.style.animationPlayState = 'running';
+    void bar.offsetWidth;
+    if (!reduced) {
+      bar.style.animation = `heroProgress ${HERO_MS}ms linear forwards`;
+    }
+  };
 
   const goTo = n => {
     const next = (n + slides.length) % slides.length;
-    if (next === cur) return;
     slides[cur].classList.remove('is-active');
     dots[cur]?.classList.remove('is-active');
     dots[cur]?.setAttribute('aria-current', 'false');
@@ -785,59 +795,72 @@ function hero() {
     if (status) status.textContent = `Slide ${cur + 1} dari ${slides.length}`;
     const counter = $('#heroCurrent');
     if (counter) counter.textContent = String(cur + 1).padStart(2, '0');
-    const bar = $('#heroProgress');
-    if (bar) {
-      bar.style.animation = 'none';
-      void bar.offsetWidth;
-      bar.style.animation = `heroProgress ${HERO_MS}ms linear forwards`;
-    }
+    resetBar();
+    start();
   };
 
-  /* Autoplay only runs while the visitor is actually watching. */
   const start = () => {
-    if (reduced || hovering || focusing || !inView || document.hidden || timer) return;
-    timer = setInterval(() => goTo(cur + 1), HERO_MS);
+    stop();
+    if (reduced || !inView || document.hidden) return;
+    timer = setTimeout(() => goTo(cur + 1), HERO_MS);
     root.classList.add('is-playing');
   };
-  const stop = () => { clearInterval(timer); timer = null; root.classList.remove('is-playing'); };
-  const restart = () => { stop(); start(); };
+
+  const stop = () => {
+    if (timer) {
+      clearTimeout(timer);
+      timer = null;
+    }
+    root.classList.remove('is-playing');
+  };
 
   root.classList.toggle('is-static', reduced);
   if (reduced && status) status.textContent = `Slide 1 dari ${slides.length} · rotasi otomatis dimatikan`;
 
-  $('.hero-next')?.addEventListener('click', () => { goTo(cur + 1); restart(); });
-  $('.hero-prev')?.addEventListener('click', () => { goTo(cur - 1); restart(); });
+  /* When the progress bar finishes animating, advance to next slide */
+  bar?.addEventListener('animationend', () => {
+    if (!reduced && inView && !document.hidden) {
+      goTo(cur + 1);
+    }
+  });
+
+  $('.hero-next')?.addEventListener('click', () => goTo(cur + 1));
+  $('.hero-prev')?.addEventListener('click', () => goTo(cur - 1));
   dots.forEach(dot => dot.addEventListener('click', () => {
     goTo(parseInt(dot.dataset.slide, 10) || 0);
-    restart();
   }));
 
-  /* Keyboard: arrows change slides, Home/End jump to the ends. The slider is
-     skipped with Tab, never trapped. */
-  root.setAttribute('tabindex', '-1');
+  /* Keyboard: arrows change slides, Home/End jump to the ends. */
   root.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight') { e.preventDefault(); goTo(cur + 1); restart(); }
-    else if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(cur - 1); restart(); }
-    else if (e.key === 'Home') { e.preventDefault(); goTo(0); restart(); }
-    else if (e.key === 'End') { e.preventDefault(); goTo(slides.length - 1); restart(); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); goTo(cur + 1); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(cur - 1); }
+    else if (e.key === 'Home') { e.preventDefault(); goTo(0); }
+    else if (e.key === 'End') { e.preventDefault(); goTo(slides.length - 1); }
   });
 
-  /* Pause while focus is inside: a keyboard or screen-reader user must not
-     have the panel change underneath them. */
-  root.addEventListener('focusin', () => { focusing = true; stop(); });
-  root.addEventListener('focusout', () => {
-    focusing = root.contains(document.activeElement);
-    if (!focusing) start();
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      stop();
+      if (bar) bar.style.animationPlayState = 'paused';
+    } else {
+      if (bar) bar.style.animationPlayState = 'running';
+      resetBar();
+      start();
+    }
   });
-  root.addEventListener('mouseenter', () => { hovering = true; stop(); });
-  root.addEventListener('mouseleave', () => { hovering = false; start(); });
-  document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
 
   /* Pause when scrolled away — nobody watches a slider that is off screen. */
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(entries => {
       inView = entries.some(x => x.isIntersecting);
-      inView ? start() : stop();
+      if (inView) {
+        if (bar) bar.style.animationPlayState = 'running';
+        resetBar();
+        start();
+      } else {
+        stop();
+        if (bar) bar.style.animationPlayState = 'paused';
+      }
     }, { threshold: 0.15 }).observe(root);
   }
 
@@ -856,10 +879,13 @@ function hero() {
     const dy = e.changedTouches[0].clientY - startY;
     if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.5) {
       goTo(dx < 0 ? cur + 1 : cur - 1);
+    } else {
+      start();
     }
-    start();
   }, { passive: true });
 
+  /* Start progress bar and autoplay timer on initial load */
+  resetBar();
   start();
 }
 

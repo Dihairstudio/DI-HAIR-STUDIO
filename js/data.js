@@ -18,12 +18,12 @@ const DIHAIR = {
       "wa": "087797894767",
       "waLink": "https://wa.me/6287797894767",
       "bookingUrl": "https://studioku.dihairstudio.id/#booking/customer",
-      "image": "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=1200&q=85",
+      "image": "assets/DI-HAIR-STUDIO-REV.png",
       "team": [
-        "RIAN — Stylist + Barberman",
-        "YASIN — Barberman",
-        "DIVI — Stylist Wanita",
-        "DEA — Capster"
+        "HADI — Stylist + Barberman",
+        "IVAN — Barberman",
+        "MPOK — Capster",
+        "CACA — Casher"
       ]
     },
     {
@@ -37,63 +37,71 @@ const DIHAIR = {
       "wa": "085773230091",
       "waLink": "https://wa.me/6285773230091",
       "bookingUrl": "https://studioku.dihairstudio.id/#booking/customer",
-      "image": "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1200&q=85",
+      "image": "assets/DI-HAIR-STUDIO-JOCA.jpg",
       "team": [
         "BOY — Barberman",
-        "ARUL — Barberman",
-        "SUSI — Spesialis Wanita"
+        "BOBBY — Barberman",
+        "SUSAN — Capster",
+        "AYU — Casher"
       ]
     }
   ],
   "artists": [
     {
-      "name": "RIAN",
+      "name": "HADI",
       "role": "Stylist + Barberman",
       "branch": "REV",
       "image": "assets/artists/rian.jpg",
       "specialty": "Precision Haircut, Creative Fade & Styling"
     },
     {
-      "name": "YASIN",
+      "name": "IVAN",
       "role": "Barberman",
       "branch": "REV",
       "image": "assets/artists/yasin.jpg",
       "specialty": "Classic Scissor Cut & Beard Sculpting"
     },
     {
-      "name": "DIVI",
-      "role": "Stylist Wanita",
-      "branch": "REV",
-      "image": "assets/artists/divi.jpg",
-      "specialty": "Layering, Balayage & Chemical Texturizing"
-    },
-    {
-      "name": "DEA",
+      "name": "MPOK",
       "role": "Capster",
       "branch": "REV",
-      "image": "assets/artists/dea.jpg",
-      "specialty": "Deep Scalp Wash & Head Acupressure"
+      "image": "assets/artists/mpok.jpg",
+      "specialty": "Creative Styling, Hair Spa & Scalp Treatment"
+    },
+    {
+      "name": "CACA",
+      "role": "Casher",
+      "branch": "REV",
+      "image": "assets/artists/caca.jpg",
+      "specialty": "Deep Scalp Wash, Reflexology & Acupressure"
     },
     {
       "name": "BOY",
       "role": "Barberman",
       "branch": "JOCA",
-      "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=900&q=85",
-      "specialty": "Modern Taper, Texture Crop & Pompadour"
+      "image": "assets/artists/divi.jpg",
+      "specialty": "Layering, Balayage & Chemical Texturizing"
     },
     {
-      "name": "ARUL",
+      "name": "BOBBY",
       "role": "Barberman",
       "branch": "JOCA",
-      "image": "https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&fit=crop&w=900&q=85",
-      "specialty": "Gentlemen Cut & Beard Grooming"
+      "image": "assets/artists/dea.jpg",
+      "specialty": "Deep Scalp Wash & Head Acupressure"
     },
     {
-      "name": "SUSI",
-      "role": "Spesialis Wanita",
+      "name": "SUSAN",
+      "role": "Capster",
       "branch": "JOCA",
-      "image": "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=900&q=85",
+      "image": "assets/artists/susan.jpg",
       "specialty": "Women Cut, Smoothing Keratin & Hair Spa"
+    },
+    {
+      "name": "AYU",
+      "role": "Casher",
+      "branch": "JOCA",
+      "image": "assets/artists/ayu.jpg",
+      "specialty": "Precision Layer Cut & Blow Styling"
     }
   ],
   "signature": [
@@ -769,10 +777,16 @@ DIHAIR.photos = {
   'photo-1604654894610-df63bc536371': { mode: 'entropy', pos: '60% 55%', posM: '55% 45%' },
   'photo-1610992015732-2449b76344bc': { mode: 'entropy', pos: '45% 45%', posM: '40% 45%' },
   'photo-1622286342621-4bd786c2447c': { mode: 'entropy', pos: '50% 45%', posM: '50% 40%' },
-  'assets/artists/rian.jpg': { pos: '50% 25%', posM: '50% 20%' },
-  'assets/artists/yasin.jpg': { pos: '50% 25%', posM: '50% 20%' },
-  'assets/artists/divi.jpg': { pos: '50% 25%', posM: '50% 20%' },
-  'assets/artists/dea.jpg': { pos: '50% 25%', posM: '50% 20%' }
+  'assets/artists/rian.jpg': { pos: '50% 20%', posM: '50% 20%' },
+  'assets/artists/yasin.jpg': { pos: '50% 20%', posM: '50% 20%' },
+  'assets/artists/divi.jpg': { pos: '50% 20%', posM: '50% 20%' },
+  'assets/artists/dea.jpg': { pos: '50% 20%', posM: '50% 20%' },
+  'assets/artists/mpok.jpg': { pos: '50% 20%', posM: '50% 20%' },
+  'assets/artists/ayu.jpg': { pos: '50% 20%', posM: '50% 20%' },
+  'assets/artists/susan.jpg': { pos: '50% 20%', posM: '50% 20%' },
+  'assets/artists/caca.jpg': { pos: '50% 20%', posM: '50% 20%' },
+  'assets/DI-HAIR-STUDIO-REV.png': { pos: '50% 50%', posM: '50% 50%' },
+  'assets/DI-HAIR-STUDIO-JOCA.jpg': { pos: '50% 50%', posM: '50% 50%' }
 };
 
 
@@ -784,7 +798,7 @@ DIHAIR.heroSlides = [
     eyebrow: 'HAIR • BEAUTY • NAIL',
     heading: 'h1',
     title: 'DI HAIR<br><em>STUDIO & NAIL</em>',
-    copy: 'Your style.<br>Your signature.',
+    copy: 'Your style. Your signature.',
     cta: { text: 'BOOK NOW', href: ZENWEL_URL, external: true },
     image: 'assets/hero-12.png',
     alt: 'Hasil hair treatment rambut sehat berkilau di DI HAIR STUDIO & NAIL',
