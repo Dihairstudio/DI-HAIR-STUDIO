@@ -532,7 +532,7 @@ const DIHAIR = {
       "period": "Berlaku Setiap Hari · Kuota Terbatas per Jam Reservasi",
       "ctaText": "RESERVE NOW",
       "ctaLink": "https://studioku.dihairstudio.id/#booking/customer",
-      "image": "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1200&q=85",
+      "image": "assets/program-01.jpg",
       "highlights": [
         "Konsultasi gaya rambut personal 1-on-1",
         "Complimentary cold towel scalp massage",
@@ -623,7 +623,7 @@ const DIHAIR = {
       "category": "STUDIO CONCEPT",
       "tagline": "Compact High-Efficiency Studio",
       "description": "Model studio modern terfokus pada layanan haircut, styling, treatment, dan signature grooming dengan efisiensi tata ruang optimal.",
-      "image": "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=1200&q=85",
+      "image": "assets/franchise-01.jpg",
       "includes": [
         "Hak penggunaan lisensi brand & identitas DI HAIR STUDIO & NAIL",
         "Standard Operating Procedure (SOP) operasional harian teruji",
@@ -640,7 +640,7 @@ const DIHAIR = {
       "category": "FLAGSHIP ECOSYSTEM",
       "tagline": "Full Studio, Chemical, Nail & Retail Hub",
       "description": "Model studio komprehensif berskala besar yang mengintegrasikan layanan haircut, chemical coloring, perm, nail studio, dan display produk retail.",
-      "image": "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1200&q=85",
+      "image": "assets/franchise-02.jpg",
       "includes": [
         "Seluruh benefit operasional dan lisensi DI HAIR STUDIO & NAIL",
         "Area khusus salon wanita, private chemical station & nail bar",
@@ -786,7 +786,12 @@ DIHAIR.photos = {
   'assets/artists/susan.jpg': { pos: '50% 20%', posM: '50% 20%' },
   'assets/artists/caca.jpg': { pos: '50% 20%', posM: '50% 20%' },
   'assets/DI-HAIR-STUDIO-REV.png': { pos: '50% 50%', posM: '50% 50%' },
-  'assets/DI-HAIR-STUDIO-JOCA.jpg': { pos: '50% 50%', posM: '50% 50%' }
+  'assets/DI-HAIR-STUDIO-JOCA.jpg': { pos: '50% 50%', posM: '50% 50%' },
+  'assets/Compact-Premium.png': { pos: '50% 50%', posM: '50% 50%' },
+  'assets/ACADEMY-SPACE-CONCEPT-VISUAL.png': { pos: '50% 50%', posM: '50% 50%' },
+  'assets/franchise-01.jpg': { pos: '50% 55%', posM: '50% 55%' },
+  'assets/franchise-02.jpg': { pos: '50% 50%', posM: '50% 50%' },
+  'assets/program-01.jpg': { pos: '50% 50%', posM: '50% 50%' }
 };
 
 

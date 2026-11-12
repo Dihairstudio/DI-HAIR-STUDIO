@@ -1009,6 +1009,73 @@ function init() {
   initCarousels();
   watchCarousels();
   watchImages();
+  initScrollReveal();
+}
+
+/* Interactive Scroll Reveal: reveals elements smoothly as they enter viewport
+   with staggered entry for grids, cards, and editorial sections. */
+function initScrollReveal() {
+  if (typeof window === 'undefined' || !('IntersectionObserver' in window)) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const selector = '.section-head, .narrow-copy, .page-hero-inner, .split-story, .nail-feature, .booking-banner, .concept-frame, .two-col > div, .pillar-grid > .pillar-card, .step-grid > .step-card, .legacy-grid > .legacy-card, .service-card, .pkg-card, .product-card, .gallery-card, .artist-card, .location-card, .program-card, .catalog-item';
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-revealed');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.05,
+    rootMargin: '0px 0px -20px 0px'
+  });
+
+  const attach = (rootEl = document) => {
+    const els = rootEl.querySelectorAll(selector);
+    els.forEach(el => {
+      if (el.classList.contains('reveal-init')) return;
+      el.classList.add('reveal-init');
+
+      const parent = el.parentElement;
+      if (parent && (parent.classList.contains('pillar-grid') || parent.classList.contains('step-grid') || parent.classList.contains('legacy-grid') || parent.classList.contains('snap-row') || parent.classList.contains('gallery-row') || parent.classList.contains('artist-row') || parent.classList.contains('location-row') || parent.classList.contains('pkg-grid') || parent.classList.contains('product-grid') || parent.classList.contains('catalog-grid') || parent.classList.contains('two-col'))) {
+        const siblings = Array.from(parent.children);
+        const idx = siblings.indexOf(el);
+        if (idx >= 0 && idx < 6) {
+          el.dataset.revealDelay = String(idx + 1);
+        }
+      }
+
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight && r.bottom > 0) {
+        el.classList.add('is-revealed');
+      } else {
+        observer.observe(el);
+      }
+    });
+  };
+
+  attach();
+
+  if ('MutationObserver' in window) {
+    new MutationObserver(mutations => {
+      let hasNewNodes = false;
+      mutations.forEach(m => {
+        if (m.addedNodes && m.addedNodes.length > 0) hasNewNodes = true;
+      });
+      if (hasNewNodes) attach();
+    }).observe(document.body, { childList: true, subtree: true });
+  }
+
+  setTimeout(() => {
+    document.querySelectorAll('.reveal-init:not(.is-revealed)').forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight + 200) {
+        el.classList.add('is-revealed');
+      }
+    });
+  }, 1000);
 }
 
 document.addEventListener('DOMContentLoaded', init);
