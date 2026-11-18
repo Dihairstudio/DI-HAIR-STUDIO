@@ -109,25 +109,25 @@ const DIHAIR = {
       "name": "PREMIUM CUT PRIA",
       "category": "HAIR",
       "desc": "Hair cut presisi + wash + massage pundak + tonic + styling pomade.",
-      "image": "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=1000&q=85"
+      "image": "assets/HAIRCUT-PRIA.jpg"
     },
     {
       "name": "PREMIUM CUT WANITA",
       "category": "HAIR",
       "desc": "Wash + hair cut personal layer + hair vitamin + editorial blow styling.",
-      "image": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=1000&q=85"
+      "image": "assets/HAIRCUT-WANITA.jpg"
     },
     {
       "name": "CREAMBATH RITUAL",
       "category": "TREATMENT",
       "desc": "Perawatan deep conditioning untuk relaksasi kulit kepala dan nutrisi batang rambut.",
-      "image": "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=1000&q=85"
+      "image": "assets/CREAMBATH-RITUAL.jpg"
     },
     {
       "name": "HAIR SPA MASK",
       "category": "TREATMENT",
       "desc": "Intensive mask spa untuk melembutkan tekstur rambut kering dan rusak.",
-      "image": "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1000&q=85"
+      "image": "assets/HAIR-MASK-SPA.jpg"
     },
     {
       "name": "SMOOTHING KERATIN PRIA",
@@ -139,19 +139,19 @@ const DIHAIR = {
       "name": "SMOOTHING KERATIN WANITA",
       "category": "TREATMENT",
       "desc": "Transformasi rambut berkilau bebas kusut dengan infus keratin premium.",
-      "image": "https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=1000&q=85"
+      "image": "assets/SMOOTHING-KERATIN.jpg"
     },
     {
       "name": "SIGNATURE HAIR COLORING",
       "category": "COLOR",
       "desc": "Pewarnaan bergradasi elegan yang disesuaikan dengan skin tone dan karakter personal.",
-      "image": "https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?auto=format&fit=crop&w=1000&q=85"
+      "image": "assets/COLOR-ASH-BASIC.jpg"
     },
     {
       "name": "GREY COVERAGE COLOR",
       "category": "COLOR",
       "desc": "Penutupan uban natural dengan pigmen merata dan perlindungan kilau rambut.",
-      "image": "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=1000&q=85"
+      "image": "assets/CAT-UBAN-EXPRESS.jpg"
     },
     {
       "name": "EDITORIAL MANICURE",
@@ -171,151 +171,151 @@ const DIHAIR = {
       "HAIRCUT PRIA",
       "Potong rambut + keramas + vitamin + pijat pundak + towel service + styling pomade",
       "hair",
-      "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=1000&q=85"
+      "assets/HAIRCUT-PRIA.jpg"
     ],
     [
       "HAIRCUT WANITA",
       "Konsultasi style + keramas + cut presisi + vitamin + blow styling finish",
       "hair",
-      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=1000&q=85"
+      "assets/HAIRCUT-WANITA.jpg"
     ],
     [
       "SHAVING & BEARD CARE",
       "Traditional hot towel shaving, shaping jenggot & soothing balm",
       "hair",
-      "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1000&q=85"
+      "assets/SHAVING-&-BEARD-CARE.jpg"
     ],
     [
       "WASH & STYLING",
       "Cuci rambut menyegarkan + scalp massage + styling pomade/matte clay",
       "hair",
-      "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=1000&q=85"
+      "assets/WASH-&-STYLING.jpg"
     ],
     [
       "TRIBAL HAIR TATTOO",
       "Custom hair pattern detailing dengan teknik razor dan trimmer presisi",
       "hair",
-      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=1000&q=85"
+      "assets/TRIBAL-HAIR-TATTOO.jpg"
     ],
     [
       "CREAMBATH RITUAL",
       "Perawatan cream bath intensif untuk batang rambut dan relaksasi pundak",
       "treatment",
-      "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1000&q=85"
+      "assets/CREAMBATH-RITUAL.jpg"
     ],
     [
       "HAIR MASK SPA",
       "Deep therapy hair mask untuk mengembalikan kelembapan rambut lelah",
       "treatment",
-      "https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=1000&q=85"
+      "assets/HAIR-MASK-SPA.jpg"
     ],
     [
       "TREATMENT ANTI RONTOK",
       "Formula konsentrat penutrisi folikel dan penguat akar rambut",
       "treatment",
-      "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=1000&q=85"
+      "assets/TREATMENT-ANTI-RONTOK.jpg"
     ],
     [
       "TREATMENT ANTI KETOMBE",
       "Purifying scalp treatment untuk menyeimbangkan pH dan membersihkan sebum",
       "treatment",
-      "https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&w=1000&q=85"
+      "assets/TREATMENT-ANTI-KETOMBE.jpg"
     ],
     [
       "CAT UBAN EXPRESS",
       "Pewarnaan cepat untuk menutupi uban dengan coverage natural",
       "color",
-      "https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?auto=format&fit=crop&w=1000&q=85"
+      "assets/CAT-UBAN-EXPRESS.jpg"
     ],
     [
       "CAT UBAN PREMIUM",
       "Formula coverage uban tahan lama dengan conditioning ekstra",
       "color",
-      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=1000&q=85"
+      "assets/CAT-UBAN-PREMIUM.jpg"
     ],
     [
       "HAIR COLOR BASIC",
       "Single process solid color dengan spektrum warna natural",
       "color",
-      "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=1000&q=85"
+      "assets/HAIR-COLOR-BASIC.jpg"
     ],
     [
       "COLOR ASH BASIC",
       "Pewarnaan nuansa ash cool tone modern dengan formula pelindung",
       "color",
-      "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=1000&q=85"
+      "assets/COLOR-ASH-BASIC.jpg"
     ],
     [
       "HAIR COLOR PREMIUM",
       "Pewarnaan multi dimensi dengan pantulan kilau sehat premium",
       "color",
-      "https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?auto=format&fit=crop&w=1000&q=85"
+      "assets/HAIR-COLOR-PREMIUM.jpg"
     ],
     [
       "HAIR ASH PREMIUM",
       "Ash tone intensif dengan tonal balance berdaya tahan tinggi",
       "color",
-      "https://images.unsplash.com/photo-1598452963314-b09f397a5c48?auto=format&fit=crop&w=1000&q=85"
+      "assets/HAIR-ASH-PREMIUM.jpg"
     ],
     [
       "2 MIX COLOR BASIC",
       "Kombinasi 2 palet warna dasar untuk efek dimensi dinamis",
       "color",
-      "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=1000&q=85"
+      "assets/2-MIX-COLOR-BASIC.jpg"
     ],
     [
       "2 MIX COLOR PREMIUM",
       "Balayage & ombre blend teknik profesional dengan transisi halus",
       "color",
-      "https://images.unsplash.com/photo-1598452963314-b09f397a5c48?auto=format&fit=crop&w=1000&q=85"
+      "assets/2-MIX-COLOR-PREMIUM.jpg"
     ],
     [
       "BLEACHING 1X",
       "Lightening process bertahap dengan minimum cuticle damage",
       "color",
-      "https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?auto=format&fit=crop&w=1000&q=85"
+      "assets/BLEACHING-1X.jpg"
     ],
     [
       "HIGHLIGHT BLEACHING 1X",
       "Foil highlight terarah untuk tekstur dan kontras visual elegan",
       "color",
-      "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=1000&q=85"
+      "assets/HIGHLIGHT-BLEACHING-1X.jpg"
     ],
     [
       "SMOOTHING KERATIN",
       "Penyelarasan ikal rambut menjadi lurus jatuh lembut alami",
       "chemical",
-      "https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=1000&q=85"
+      "assets/SMOOTHING-KERATIN.jpg"
     ],
     [
       "HAIR KERATIN INFUSION",
       "Pengisian serat keratin mikro untuk rambut rapuh dan kusam",
       "chemical",
-      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=1000&q=85"
+      "assets/HAIR-KERATIN-INFUSION.jpg"
     ],
     [
       "DOWN PERM FULL",
       "Menjinakkan rambut samping dan belakang yang mengembang penuh",
       "perm",
-      "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=1000&q=85"
+      "assets/DOWN-PERM-FULL.jpg"
     ],
     [
       "DOWN PERM SAMPING",
       "Merapikan bagian samping rambut agar flat dan berstruktur rapi",
       "perm",
-      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=1000&q=85"
+      "assets/DOWN-PERM-SAMPING.jpg"
     ],
     [
       "HAIR PERM CURLY",
       "Tekstur ikal bergelombang dinamis untuk gaya kasual modern",
       "perm",
-      "https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=1000&q=85"
+      "assets/HAIR-PERM-CURLY.jpg"
     ],
     [
       "HAIR PERM KOREAN",
       "Gelombang alami bervolume khas Korean wave styling",
       "perm",
-      "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1000&q=85"
+      "assets/HAIR-PERM-KOREAN.jpg"
     ],
     [
       "MANICURE",
@@ -654,22 +654,22 @@ const DIHAIR = {
   "gallery": [
     [
       "Haircut Pria Presisi",
-      "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=1200&q=85",
+      "assets/HAIRCUT-PRIA.jpg",
       "hair"
     ],
     [
       "Haircut Layer Wanita",
-      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=1200&q=85",
+      "assets/HAIRCUT-WANITA.jpg",
       "hair"
     ],
     [
       "Coloring Dimensional",
-      "https://images.unsplash.com/photo-1598452963314-b09f397a5c48?auto=format&fit=crop&w=1200&q=85",
+      "assets/COLORING-DIMENSIONAL.jpg",
       "color"
     ],
     [
       "Hair Keratin Treatment",
-      "https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=1200&q=85",
+      "assets/HAIR-KERATIN-TREATMENT.jpg",
       "treatment"
     ],
     [
@@ -791,7 +791,34 @@ DIHAIR.photos = {
   'assets/ACADEMY-SPACE-CONCEPT-VISUAL.png': { pos: '50% 50%', posM: '50% 50%' },
   'assets/franchise-01.jpg': { pos: '50% 55%', posM: '50% 55%' },
   'assets/franchise-02.jpg': { pos: '50% 50%', posM: '50% 50%' },
-  'assets/program-01.jpg': { pos: '50% 50%', posM: '50% 50%' }
+  'assets/program-01.jpg': { pos: '50% 50%', posM: '50% 50%' },
+  'assets/HAIRCUT-PRIA.jpg': { pos: '50% 45%', posM: '50% 45%' },
+  'assets/HAIRCUT-WANITA.jpg': { pos: '50% 50%', posM: '50% 50%' },
+  'assets/SHAVING-&-BEARD-CARE.jpg': { pos: '60% 40%', posM: '60% 40%' },
+  'assets/WASH-&-STYLING.jpg': { pos: '60% 50%', posM: '60% 50%' },
+  'assets/TRIBAL-HAIR-TATTOO.jpg': { pos: '45% 45%', posM: '45% 45%' },
+  'assets/CREAMBATH-RITUAL.jpg': { pos: '55% 55%', posM: '55% 55%' },
+  'assets/HAIR-MASK-SPA.jpg': { pos: '50% 50%', posM: '50% 50%' },
+  'assets/TREATMENT-ANTI-RONTOK.jpg': { pos: '50% 50%', posM: '50% 50%' },
+  'assets/TREATMENT-ANTI-KETOMBE.jpg': { pos: '50% 50%', posM: '50% 50%' },
+  'assets/CAT-UBAN-EXPRESS.jpg': { pos: '50% 50%', posM: '50% 50%' },
+  'assets/CAT-UBAN-PREMIUM.jpg': { pos: '50% 50%', posM: '50% 50%' },
+  'assets/HAIR-COLOR-BASIC.jpg': { pos: '50% 50%', posM: '50% 50%' },
+  'assets/COLOR-ASH-BASIC.jpg': { pos: '50% 50%', posM: '50% 50%' },
+  'assets/HAIR-COLOR-PREMIUM.jpg': { pos: '50% 50%', posM: '50% 50%' },
+  'assets/HAIR-ASH-PREMIUM.jpg': { pos: '50% 50%', posM: '50% 50%' },
+  'assets/2-MIX-COLOR-BASIC.jpg': { pos: '50% 50%', posM: '50% 50%' },
+  'assets/2-MIX-COLOR-PREMIUM.jpg': { pos: '50% 50%', posM: '50% 50%' },
+  'assets/BLEACHING-1X.jpg': { pos: '50% 50%', posM: '50% 50%' },
+  'assets/HIGHLIGHT-BLEACHING-1X.jpg': { pos: '50% 50%', posM: '50% 50%' },
+  'assets/SMOOTHING-KERATIN.jpg': { pos: '50% 50%', posM: '50% 50%' },
+  'assets/HAIR-KERATIN-INFUSION.jpg': { pos: '50% 50%', posM: '50% 50%' },
+  'assets/DOWN-PERM-FULL.jpg': { pos: '50% 50%', posM: '50% 50%' },
+  'assets/DOWN-PERM-SAMPING.jpg': { pos: '50% 35%', posM: '50% 35%' },
+  'assets/HAIR-PERM-CURLY.jpg': { pos: '50% 25%', posM: '50% 25%' },
+  'assets/HAIR-PERM-KOREAN.jpg': { pos: '50% 25%', posM: '50% 25%' },
+  'assets/COLORING-DIMENSIONAL.jpg': { pos: '50% 50%', posM: '50% 50%' },
+  'assets/HAIR-KERATIN-TREATMENT.jpg': { pos: '50% 50%', posM: '50% 50%' }
 };
 
 
