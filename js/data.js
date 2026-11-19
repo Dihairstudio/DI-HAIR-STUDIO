@@ -55,21 +55,21 @@ const DIHAIR = {
       "specialty": "Precision Haircut, Creative Fade & Styling"
     },
     {
-      "name": "IVAN",
+      "name": "RIAN",
       "role": "Barberman",
       "branch": "REV",
       "image": "assets/artists/yasin.jpg",
       "specialty": "Classic Scissor Cut & Beard Sculpting"
     },
     {
-      "name": "MPOK",
+      "name": "DIVI",
       "role": "Capster",
       "branch": "REV",
       "image": "assets/artists/mpok.jpg",
       "specialty": "Creative Styling, Hair Spa & Scalp Treatment"
     },
     {
-      "name": "CACA",
+      "name": "ICHA",
       "role": "Casher",
       "branch": "REV",
       "image": "assets/artists/caca.jpg",
@@ -83,21 +83,21 @@ const DIHAIR = {
       "specialty": "Layering, Balayage & Chemical Texturizing"
     },
     {
-      "name": "BOBBY",
+      "name": "ARRUL",
       "role": "Barberman",
       "branch": "JOCA",
       "image": "assets/artists/dea.jpg",
       "specialty": "Deep Scalp Wash & Head Acupressure"
     },
     {
-      "name": "SUSAN",
+      "name": "SUSI",
       "role": "Capster",
       "branch": "JOCA",
       "image": "assets/artists/susan.jpg",
       "specialty": "Women Cut, Smoothing Keratin & Hair Spa"
     },
     {
-      "name": "AYU",
+      "name": "NINGRUM",
       "role": "Casher",
       "branch": "JOCA",
       "image": "assets/artists/ayu.jpg",
@@ -133,13 +133,13 @@ const DIHAIR = {
       "name": "SMOOTHING KERATIN PRIA",
       "category": "TREATMENT",
       "desc": "Meluruskan dan menata rambut ikal/frizzy menjadi lebih rapi dan natural.",
-      "image": "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1000&q=85"
+      "image": "assets/SMOOTHING-KERATIN-PRIA.jpg"
     },
     {
       "name": "SMOOTHING KERATIN WANITA",
       "category": "TREATMENT",
       "desc": "Transformasi rambut berkilau bebas kusut dengan infus keratin premium.",
-      "image": "assets/SMOOTHING-KERATIN.jpg"
+      "image": "assets/SMOOTHING-KERATIN-WANITA.jpg"
     },
     {
       "name": "SIGNATURE HAIR COLORING",
@@ -812,6 +812,8 @@ DIHAIR.photos = {
   'assets/BLEACHING-1X.jpg': { pos: '50% 50%', posM: '50% 50%' },
   'assets/HIGHLIGHT-BLEACHING-1X.jpg': { pos: '50% 50%', posM: '50% 50%' },
   'assets/SMOOTHING-KERATIN.jpg': { pos: '50% 50%', posM: '50% 50%' },
+  'assets/SMOOTHING-KERATIN-PRIA.jpg': { pos: '50% 50%', posM: '50% 50%' },
+  'assets/SMOOTHING-KERATIN-WANITA.jpg': { pos: '50% 45%', posM: '50% 45%' },
   'assets/HAIR-KERATIN-INFUSION.jpg': { pos: '50% 50%', posM: '50% 50%' },
   'assets/DOWN-PERM-FULL.jpg': { pos: '50% 50%', posM: '50% 50%' },
   'assets/DOWN-PERM-SAMPING.jpg': { pos: '50% 35%', posM: '50% 35%' },
